@@ -12,7 +12,7 @@ public class LoginView extends JFrame {
 
         //create model and controller;
         Login model = new Login();
-        LoginController controller = new LoginController();
+        LoginController controller = new LoginController(model,this);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
