@@ -21,4 +21,11 @@ public class LoginController implements ActionListener {
         model.setPassword(password);
         model.checkForAccount();
     }
+
+    public void loginSuccessful()
+    {
+        view.dispose();
+        int customerId = model.getCustomerId();
+        new StoreController(customerId);
+    }
 }
