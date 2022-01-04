@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginView extends JFrame {
+public class LoginFrame extends JFrame {
 
     private JTextField  usernameTextBox, passwordTextBox;
 
-    public LoginView()
+    public LoginFrame()
     {
         super("Login");
         this.setLayout(new GridBagLayout());
