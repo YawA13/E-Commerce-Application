@@ -44,4 +44,14 @@ public class LoginView extends JFrame {
         this.setPreferredSize(new Dimension(600,300));
         this.setVisible(true);
     }
+
+    public String getUsername()
+    {
+        return usernameTextBox.getText();
+    }
+
+    public String getPassword()
+    {
+        return passwordTextBox.getText();
+    }
 }
