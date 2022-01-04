@@ -4,15 +4,21 @@ import java.awt.event.ActionListener;
 public class LoginController implements ActionListener {
 
     private Login model;
-    private LoginView view;
+    private LoginFrame view;
 
-    public LoginController(Login model, LoginView view) {
+    public LoginController(Login model, LoginFrame view) {
         this.model = model;
         this.view = view;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
+        String username = view.getUsername();
+        String password = view.getPassword();
 
+        model.setUsername(username);
+        model.setPassword(password);
+        model.checkForAccount();
     }
 }
