@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends JFrame implements LoginView{
 
     private JTextField  usernameTextBox, passwordTextBox;
+
+    private LoginController controller;
 
     public LoginFrame()
     {
@@ -12,7 +14,8 @@ public class LoginFrame extends JFrame {
 
         //create model and controller;
         Login model = new Login();
-        LoginController controller = new LoginController(model,this);
+        model.addView(this);
+        controller = new LoginController(model,this);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
@@ -53,5 +56,26 @@ public class LoginFrame extends JFrame {
     public String getPassword()
     {
         return passwordTextBox.getText();
+    }
+
+    @Override
+    public void loginSuccessful()
+    {
+        JOptionPane.showMessageDialog(this,
+                "You have successfully logged into the store",
+                "Login Successful",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        controller.loginSuccessful();
+    }
+
+    @Override
+    public void loginFailed()
+    {
+        JOptionPane.showMessageDialog(this,
+                "Incorrect username or password",
+                "Login Failed",
+                JOptionPane.ERROR_MESSAGE);
+
     }
 }
