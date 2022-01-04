@@ -9,14 +9,12 @@ public class Login {
 
     private String username;
     private String password;
-    private Connection connection;
     private int customerId;
     private List<LoginView> views;
 
     public Login() {
         username = null;
         password = null;
-        connection = DatabaseConnection.getConnection();
         customerId = 0;
         views = new ArrayList<>();
     }
@@ -49,6 +47,7 @@ public class Login {
     }
     public void checkForAccount()
     {
+        Connection connection = DatabaseConnection.getConnection();
         ResultSet resultSet;
         try
         {
@@ -74,6 +73,7 @@ public class Login {
                 }
             }
 
+            DatabaseConnection.closeConnection();
         }
         catch (SQLException e)
         {
@@ -87,4 +87,5 @@ public class Login {
     {
         return customerId;
     }
+
 }

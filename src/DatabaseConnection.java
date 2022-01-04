@@ -10,7 +10,8 @@ public class DatabaseConnection {
 
     private static Connection connection = null;
 
-    static {
+    private static Connection createConnection ()
+    {
         Properties prop = new Properties();
         String fileName = "db.config";
         try (FileInputStream fis = new FileInputStream(fileName)) {
@@ -25,11 +26,27 @@ public class DatabaseConnection {
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
+        return connection;
     }
 
     public static Connection getConnection()
     {
+        if (connection == null)
+            connection = createConnection();
         return connection;
+    }
+
+    public static void closeConnection()
+    {
+        try
+        {
+            connection.close();
+            connection = null;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
