@@ -97,7 +97,7 @@ public class Register {
             customerId = resultSet.getInt("id");
 
             for (RegisterView v : views) {
-                v.RegistarSuccessful();
+                v.RegisterSuccessful();
             }
         } catch (SQLException e) {
             e.printStackTrace();
