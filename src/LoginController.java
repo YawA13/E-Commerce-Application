@@ -19,7 +19,7 @@ public class LoginController implements ActionListener {
 
         model.setUsername(username);
         model.setPassword(password);
-        model.checkForAccount();
+        model.requestLogin();
     }
 
     public void loginSuccessful()

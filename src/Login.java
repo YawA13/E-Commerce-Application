@@ -45,7 +45,7 @@ public class Login {
             }
         }
     }
-    public void checkForAccount()
+    public void requestLogin()
     {
         Connection connection = DatabaseConnection.getConnection();
         ResultSet resultSet;
@@ -57,20 +57,11 @@ public class Login {
             resultSet = statement.executeQuery();
 
             //if username and password are correct
-            if (resultSet.next())
-            {
-                customerId = resultSet.getInt("id");
-                for (LoginView v:views)
-                {
-                    v.loginSuccessful();
-                }
+            if (resultSet.next()) {
+                loginSuccessful(resultSet);
             }
-            else
-            {
-                for (LoginView v:views)
-                {
-                    v.loginFailed();
-                }
+            else {
+                loginFailed();
             }
 
             DatabaseConnection.closeConnection();
@@ -81,6 +72,30 @@ public class Login {
         }
 
 
+    }
+
+    private void loginSuccessful(ResultSet resultSet)
+    {
+        try
+        {
+            customerId = resultSet.getInt("id");
+            for (LoginView v:views)
+            {
+                v.loginSuccessful();
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void loginFailed()
+    {
+        for (LoginView v:views)
+        {
+            v.loginFailed();
+        }
     }
 
     public int getCustomerId()
