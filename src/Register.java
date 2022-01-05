@@ -59,7 +59,7 @@ public class Register {
         }
     }
 
-    public void requestNewAccount() {
+    public void createNewAccount() {
         // connection = DatabaseConnection.getConnection();
         ResultSet resultSet;
         try {
