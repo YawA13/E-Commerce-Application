@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 public class RegisterController implements ActionListener {
 
     private Register model;
-    private RegisterView view;
+    private RegisterFrame view;
 
-    public RegisterController(Register model, RegisterView view) {
+    public RegisterController(Register model, RegisterFrame view) {
         this.model = model;
         this.view = view;
     }
