@@ -1,3 +1,5 @@
+package Registration;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -88,7 +90,7 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
     public void registrationSuccessful() {
         JOptionPane.showMessageDialog(this,
                 "You have successfully created an account",
-                "Registration Successful",
+                "Registration.Registration Successful",
                 JOptionPane.INFORMATION_MESSAGE);
 
         controller.registrationSuccessful();
@@ -97,8 +99,8 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
     @Override
     public void registrationFailed() {
         JOptionPane.showMessageDialog(this,
-                "Registration Failed. Please Try Again.",
-                "Registration Failed",
+                "Registration.Registration Failed. Please Try Again.",
+                "Registration.Registration Failed",
                 JOptionPane.ERROR_MESSAGE);
     }
 }

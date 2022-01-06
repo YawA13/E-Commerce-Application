@@ -1,3 +1,5 @@
+package Store;
+
 public class Product {
     private final String name;
     private double price;

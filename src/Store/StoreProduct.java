@@ -1,3 +1,5 @@
+package Store;
+
 public class StoreProduct extends Product{
 
     private final int id;

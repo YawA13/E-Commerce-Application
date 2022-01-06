@@ -1,3 +1,5 @@
+package Login;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -63,7 +65,7 @@ public class LoginFrame extends JFrame implements LoginView{
     {
         JOptionPane.showMessageDialog(this,
                 "You have successfully logged into the store",
-                "Login Successful",
+                "Login.Login Successful",
                 JOptionPane.INFORMATION_MESSAGE);
 
         controller.loginSuccessful();
@@ -74,7 +76,7 @@ public class LoginFrame extends JFrame implements LoginView{
     {
         JOptionPane.showMessageDialog(this,
                 "Incorrect username or password",
-                "Login Failed",
+                "Login.Login Failed",
                 JOptionPane.ERROR_MESSAGE);
 
     }
