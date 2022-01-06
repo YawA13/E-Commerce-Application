@@ -97,7 +97,7 @@ public class RegisterFrame extends JFrame implements RegisterView{
     @Override
     public void RegisterFailed() {
         JOptionPane.showMessageDialog(this,
-                "The username already exists. Please Try again.",
+                "Registration Failed. Please Try Again.",
                 "Registration Failed",
                 JOptionPane.ERROR_MESSAGE);
     }
