@@ -1,6 +1,6 @@
 public interface RegisterView
 {
-    void RegisterSuccessful();
+    void registerSuccessful();
 
-    void RegisterFailed();
+    void registerFailed();
 }

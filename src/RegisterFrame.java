@@ -85,7 +85,7 @@ public class RegisterFrame extends JFrame implements RegisterView{
     }
 
     @Override
-    public void RegisterSuccessful() {
+    public void registerSuccessful() {
         JOptionPane.showMessageDialog(this,
                 "You have successfully created an account",
                 "Registration Successful",
@@ -95,7 +95,7 @@ public class RegisterFrame extends JFrame implements RegisterView{
     }
 
     @Override
-    public void RegisterFailed() {
+    public void registerFailed() {
         JOptionPane.showMessageDialog(this,
                 "Registration Failed. Please Try Again.",
                 "Registration Failed",

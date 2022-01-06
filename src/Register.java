@@ -69,9 +69,9 @@ public class Register {
 
             //if username already exists
             if (resultSet.next()) {
-                RegisterFailed();
+                registerFailed();
             } else {
-                RegisterSuccessful();
+                registerSuccessful();
             }
 
             DatabaseConnection.closeConnection();
@@ -81,36 +81,52 @@ public class Register {
 
     }
 
-    private void RegisterSuccessful() {
-        try {
-            String query = "insert into customers (firstName, lastName, username, password) values (?,?,?,?)";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setString(3, username);
-            statement.setString(4, password);
-            statement.execute();
+    private void registerSuccessful() {
+        if(isAnyInputEmpty())
+        {
+            registerFailed();
+        }
+        else
+        {
+            try {
+                String query = "insert into customers (firstName, lastName, username, password) values (?,?,?,?)";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, firstName);
+                statement.setString(2, lastName);
+                statement.setString(3, username);
+                statement.setString(4, password);
+                statement.execute();
 
-            statement = connection.prepareStatement("select * from customers where username = ?");
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next())
-            {
-                customerId = resultSet.getInt("id");
+                statement = connection.prepareStatement("select * from customers where username = ?");
+                statement.setString(1, username);
+                ResultSet resultSet = statement.executeQuery();
+                if(resultSet.next())
+                {
+                    customerId = resultSet.getInt("id");
+                }
+
+
+                for (RegisterView v : views) {
+                    v.registerSuccessful();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-
-            for (RegisterView v : views) {
-                v.RegisterSuccessful();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    private void RegisterFailed() {
+    private boolean isAnyInputEmpty()
+    {
+        if(firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty() )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void registerFailed() {
         for (RegisterView v : views) {
-            v.RegisterFailed();
+            v.registerFailed();
         }
     }
 
