@@ -1,12 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegisterController implements ActionListener {
+public class RegistrationController implements ActionListener {
 
-    private Register model;
-    private RegisterFrame view;
+    private Registration model;
+    private RegistrationFrame view;
 
-    public RegisterController(Register model, RegisterFrame view) {
+    public RegistrationController(Registration model, RegistrationFrame view) {
         this.model = model;
         this.view = view;
     }
@@ -26,7 +26,7 @@ public class RegisterController implements ActionListener {
         model.createNewAccount();
     }
 
-    public void registerSuccessful()
+    public void registrationSuccessful()
     {
         view.dispose();
         int customerId = model.getCustomerId();

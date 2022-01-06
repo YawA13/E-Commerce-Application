@@ -5,18 +5,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Register {
+public class Registration {
 
     private String firstName;
     private String lastName;
     private String username;
     private String password;
     private int customerId;
-    private List<RegisterView> views;
+    private List<RegistrationView> views;
     private Connection connection;
 
 
-    public Register(String firstName, String lastName, String username, String password) {
+    public Registration(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -26,7 +26,7 @@ public class Register {
         views = new ArrayList<>();
     }
 
-    public Register() {
+    public Registration() {
         this(null, null, null, null);
     }
 
@@ -46,11 +46,11 @@ public class Register {
         this.password = password;
     }
 
-    public void addView(RegisterView newView) {
+    public void addView(RegistrationView newView) {
         views.add(newView);
     }
 
-    public void removeView(RegisterView oldView) {
+    public void removeView(RegistrationView oldView) {
         for (int i = 0; i < views.size(); i++) {
             if (views.get(i).equals(oldView)) {
                 views.remove(i);
@@ -69,9 +69,9 @@ public class Register {
 
             //if username already exists
             if (resultSet.next()) {
-                registerFailed();
+                registrationFailed();
             } else {
-                registerSuccessful();
+                registrationSuccessful();
             }
 
             DatabaseConnection.closeConnection();
@@ -81,10 +81,10 @@ public class Register {
 
     }
 
-    private void registerSuccessful() {
+    private void registrationSuccessful() {
         if(isAnyInputEmpty())
         {
-            registerFailed();
+            registrationFailed();
         }
         else
         {
@@ -106,8 +106,8 @@ public class Register {
                 }
 
 
-                for (RegisterView v : views) {
-                    v.registerSuccessful();
+                for (RegistrationView v : views) {
+                    v.registrationSuccessful();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -120,9 +120,9 @@ public class Register {
         return firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty();
     }
 
-    private void registerFailed() {
-        for (RegisterView v : views) {
-            v.registerFailed();
+    private void registrationFailed() {
+        for (RegistrationView v : views) {
+            v.registrationFailed();
         }
     }
 

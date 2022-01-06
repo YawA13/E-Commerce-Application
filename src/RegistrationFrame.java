@@ -1,21 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class RegisterFrame extends JFrame implements RegisterView{
+public class RegistrationFrame extends JFrame implements RegistrationView {
 
     private JTextField firstNameTextBox, lastNameTextBox, usernameTextBox,passwordTextBox;
 
-    private RegisterController controller;
+    private RegistrationController controller;
 
-    public RegisterFrame()
+    public RegistrationFrame()
     {
-        super("Register");
+        super("Registration");
         this.setLayout(new GridBagLayout());
 
         //create model and controller;
-        Register model = new Register();
+        Registration model = new Registration();
         model.addView(this);
-        controller = new RegisterController(model,this);
+        controller = new RegistrationController(model,this);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
@@ -34,8 +34,8 @@ public class RegisterFrame extends JFrame implements RegisterView{
         JLabel passwordLabel = new JLabel("Password");
         passwordTextBox = new JTextField();
 
-        JButton registerBtn = new JButton("Register");
-        registerBtn.addActionListener(controller);
+        JButton registrationBtn = new JButton("Registration");
+        registrationBtn.addActionListener(controller);
 
         //adds all components to frame
         mainPanel.add(firstNameLabel);
@@ -58,7 +58,7 @@ public class RegisterFrame extends JFrame implements RegisterView{
         mainPanel.add(passwordTextBox);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        mainPanel.add(registerBtn);
+        mainPanel.add(registrationBtn);
         this.add(mainPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,17 +85,17 @@ public class RegisterFrame extends JFrame implements RegisterView{
     }
 
     @Override
-    public void registerSuccessful() {
+    public void registrationSuccessful() {
         JOptionPane.showMessageDialog(this,
                 "You have successfully created an account",
                 "Registration Successful",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        controller.registerSuccessful();
+        controller.registrationSuccessful();
     }
 
     @Override
-    public void registerFailed() {
+    public void registrationFailed() {
         JOptionPane.showMessageDialog(this,
                 "Registration Failed. Please Try Again.",
                 "Registration Failed",
