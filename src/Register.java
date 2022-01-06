@@ -117,11 +117,7 @@ public class Register {
 
     private boolean isAnyInputEmpty()
     {
-        if(firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty() )
-        {
-            return true;
-        }
-        return false;
+        return firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty();
     }
 
     private void registerFailed() {
