@@ -22,7 +22,7 @@ public class Register {
         this.username = username;
         this.password = password;
         customerId = 0;
-        connection = DatabaseConnection.getConnection();
+        connection = null;
         views = new ArrayList<>();
     }
 
@@ -60,7 +60,7 @@ public class Register {
     }
 
     public void createNewAccount() {
-        // connection = DatabaseConnection.getConnection();
+        connection = DatabaseConnection.getConnection();
         ResultSet resultSet;
         try {
             PreparedStatement statement = connection.prepareStatement("select * from customers where username = ?");
@@ -94,7 +94,11 @@ public class Register {
             statement = connection.prepareStatement("select * from customers where username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
-            customerId = resultSet.getInt("id");
+            if(resultSet.next())
+            {
+                customerId = resultSet.getInt("id");
+            }
+
 
             for (RegisterView v : views) {
                 v.RegisterSuccessful();

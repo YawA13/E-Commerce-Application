@@ -26,7 +26,7 @@ public class RegisterController implements ActionListener {
         model.createNewAccount();
     }
 
-    public void loginSuccessful()
+    public void registerSuccessful()
     {
         view.dispose();
         int customerId = model.getCustomerId();
