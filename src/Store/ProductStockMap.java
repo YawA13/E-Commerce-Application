@@ -8,7 +8,7 @@ public class ProductStockMap implements ProductStockCollection{
 
     public ProductStockMap()
     {
-        list = new HashMap<Product, Integer>();
+        list = new HashMap<>();
     }
 
     public boolean contains(Product product)
@@ -18,7 +18,11 @@ public class ProductStockMap implements ProductStockCollection{
 
     public int getProductStock(Product product)
     {
-        return list.get(product);
+        if(contains(product))
+        {
+            return list.get(product);
+        }
+        return 0;
     }
 
     public void add(Product product, int stock)
@@ -30,7 +34,7 @@ public class ProductStockMap implements ProductStockCollection{
         list.put(product,stock);
     }
 
-    public void remove(Product product, int stock)
+    public boolean remove(Product product, int stock)
     {
         if (contains(product))
         {
@@ -43,13 +47,21 @@ public class ProductStockMap implements ProductStockCollection{
             {
                 list.remove(product);
             }
+
+            return true;
         }
+        return false;
     }
 
     public double getTotalCost(Product product)
     {
-        int stock = getProductStock(product);
-        double total = product.getPrice() * stock;
+        double total = 0;
+        if (contains(product))
+        {
+            int stock = getProductStock(product);
+            total = product.getPrice() * stock;
+
+        }
         return total;
     }
 
