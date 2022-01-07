@@ -1,9 +1,7 @@
 package Store;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class Customer {
 
@@ -16,6 +14,16 @@ public class Customer {
         shoppingCart = new ProductStockMap();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public ProductStockCollection getShoppingCart() {
+        return shoppingCart;
+    }
+
+
+    //Delegate Methods for shopping cart
     public boolean contains(Product product) {
         return shoppingCart.contains(product);
     }
@@ -43,6 +51,7 @@ public class Customer {
     public Collection<Product> getAllProducts() {
         return shoppingCart.getAllProducts();
     }
+
 
 
 
