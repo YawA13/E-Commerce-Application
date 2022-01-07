@@ -1,5 +1,6 @@
 package Store;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public interface ProductStockCollection {
@@ -20,5 +21,7 @@ public interface ProductStockCollection {
 
 
     double getTotalCost();
+
+    Collection<Product> getAllProducts();
 
 }

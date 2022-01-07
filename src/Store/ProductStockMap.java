@@ -1,8 +1,11 @@
 package Store;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
-public class ProductStockMap implements ProductStockCollection{
+public class ProductStockMap implements ProductStockCollection {
 
     private HashMap<Product,Integer> list;
 
@@ -74,6 +77,11 @@ public class ProductStockMap implements ProductStockCollection{
         }
 
         return total;
+    }
+
+    public Collection<Product> getAllProducts()
+    {
+        return list.keySet();
     }
 
 }
