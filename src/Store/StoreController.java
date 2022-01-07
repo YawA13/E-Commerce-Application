@@ -4,7 +4,7 @@ public class StoreController {
     private Store model;
     private StoreFrame view;
 
-    public StoreController(int customerId)
+    public StoreController(Customer customer)
     {
 
     }

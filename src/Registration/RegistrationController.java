@@ -1,5 +1,6 @@
 package Registration;
 
+import Store.Customer;
 import Store.StoreController;
 
 import java.awt.event.ActionEvent;
@@ -34,6 +35,7 @@ public class RegistrationController implements ActionListener {
     {
         view.dispose();
         int customerId = model.getCustomerId();
-        new StoreController(customerId);
+        Customer customer = new Customer(customerId);
+        new StoreController(customer);
     }
 }
