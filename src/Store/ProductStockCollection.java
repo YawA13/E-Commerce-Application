@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public interface ProductStockCollection {
 
-
-
     boolean contains(Product product);
 
 
@@ -15,7 +13,7 @@ public interface ProductStockCollection {
     void add(Product product, int stock);
 
 
-    void remove(Product product, int stock);
+    boolean remove(Product product, int stock);
 
 
     double getTotalCost(Product product);
