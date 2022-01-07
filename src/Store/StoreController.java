@@ -6,6 +6,9 @@ public class StoreController {
 
     public StoreController(Customer customer)
     {
-
+        model = new Store();
+        model.setCustomer(customer);
+        view = new StoreFrame(this);
+        model.addView(view);
     }
 }
