@@ -1,10 +1,7 @@
 package Store;
 
 import General.DatabaseConnection;
-import Login.LoginView;
-import Registration.RegistrationView;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,7 +63,7 @@ public class Store {
                 Product product = new Product(productId,productName,productPrice,productImg);
                 inventory.add(product, productStock);
             }
-            addProductsToGUI();
+            updateGUIProducts();
         }
         catch (SQLException e)
         {
@@ -75,7 +72,7 @@ public class Store {
         DatabaseConnection.closeConnection();
     }
 
-    public void addProductsToGUI()
+    public void updateGUIProducts()
     {
         for (StoreView v:views)
         {
