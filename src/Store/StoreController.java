@@ -1,6 +1,9 @@
 package Store;
 
-public class StoreController {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class StoreController implements ActionListener {
     private Store model;
     private StoreFrame view;
 
@@ -10,5 +13,10 @@ public class StoreController {
         model.setCustomer(customer);
         view = new StoreFrame(this);
         model.addView(view);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
