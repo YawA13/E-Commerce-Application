@@ -14,11 +14,11 @@ public class StoreFrame extends JFrame implements StoreView {
     {
         super("Baseball Exclusives");
         this.controller = controller;
-        //mainPanel = new JPanel(new GridBagLayout());
-        mainPanel = new JPanel();
+        mainPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         /*** todo use for dual panel
+        mainPanel = new JPanel(new GridBagLayout());
         JPanel productPanel = new JPanel();
         JPanel cartPanel = new JPanel();
         productPanel.setBackground(Color.RED);
@@ -48,17 +48,16 @@ public class StoreFrame extends JFrame implements StoreView {
         this.setPreferredSize(new Dimension(600,300));
         this.setVisible(true);
 
-        //controller.updateModelProducts();
     }
 
     public void addProductsToGUI(Collection<Product> products)
     {
 
-        JPanel productView = new JPanel();
-        productView.setLayout(new BoxLayout(productView, BoxLayout.Y_AXIS));
         for(Product product:products)
         {
-
+            JPanel productView = new JPanel();
+            productView.setLayout(new BoxLayout(productView, BoxLayout.Y_AXIS));
+            productView.setBackground(Color.GREEN);
             String productImg = product.getImgUrl();
             String productName = product.getName();
             String productPrice = String.valueOf(product.getPrice());
@@ -87,9 +86,9 @@ public class StoreFrame extends JFrame implements StoreView {
             buttonPanel.add(addBtn);
             buttonPanel.add(removeBtn);
             productView.add(buttonPanel);
+            mainPanel.add(productView);
         }
 
-        mainPanel.add(productView);
         this.validate();
     }
 }
