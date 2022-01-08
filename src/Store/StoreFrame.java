@@ -2,16 +2,18 @@ package Store;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class StoreFrame extends JFrame implements StoreView {
 
     private StoreController controller;
+    private JPanel mainPanel;
 
     public StoreFrame(StoreController controller)
     {
         super("Baseball Exclusives");
         this.controller = controller;
-        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel = new JPanel(new GridBagLayout());
 
         /*** todo use for dual panel
         JPanel productPanel = new JPanel();
@@ -44,11 +46,11 @@ public class StoreFrame extends JFrame implements StoreView {
         this.setVisible(true);
     }
 
-    public void addProductsToGUI()
+    public void addProductsToGUI(List<Product> products)
     {
-        /**
+
         JPanel productView = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));
-        for(Product product:)
+        for(Product product:products)
         {
 
             String productImg = product.getImgUrl();
@@ -63,8 +65,14 @@ public class StoreFrame extends JFrame implements StoreView {
             JButton addBtn = new JButton("+");
             JButton removeBtn = new JButton("-");
 
+            addBtn.setActionCommand("add");
+            removeBtn.setActionCommand("remove");
 
+            addBtn.addActionListener(controller);
+            removeBtn.addActionListener(controller);
 
+            addBtn.putClientProperty("product",product);
+            removeBtn.putClientProperty("product",product);
 
             productView.add(image);
             productView.add(titleText);
@@ -75,6 +83,7 @@ public class StoreFrame extends JFrame implements StoreView {
             productView.add(buttonPanel);
 
         }
-         **/
+
+        mainPanel.add(productView);
     }
 }
