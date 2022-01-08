@@ -2,6 +2,7 @@ package Store;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collection;
 import java.util.List;
 
 public class StoreFrame extends JFrame implements StoreView {
@@ -46,7 +47,7 @@ public class StoreFrame extends JFrame implements StoreView {
         this.setVisible(true);
     }
 
-    public void addProductsToGUI(List<Product> products)
+    public void addProductsToGUI(Collection<Product> products)
     {
 
         JPanel productView = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));

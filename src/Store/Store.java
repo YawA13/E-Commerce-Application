@@ -1,7 +1,14 @@
 package Store;
 
+import General.DatabaseConnection;
+import Login.LoginView;
 import Registration.RegistrationView;
 
+import javax.xml.transform.Result;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,4 +42,44 @@ public class Store {
         }
     }
 
+    public void setInventory(ProductStockCollection inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setInventory() {
+
+        Connection connection = DatabaseConnection.getConnection();
+
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement("select * from products");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+            {
+
+                int productId = resultSet.getInt("id");
+                String productName = resultSet.getString("name");
+                double productPrice = resultSet.getDouble("price");
+                String productImg = resultSet.getString("img");
+                int productStock = resultSet.getInt("stock");
+
+                Product product = new Product(productId,productName,productPrice,productImg);
+                inventory.add(product, productStock);
+            }
+            addProductsToGUI();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        DatabaseConnection.closeConnection();
+    }
+
+    public void addProductsToGUI()
+    {
+        for (StoreView v:views)
+        {
+            v.addProductsToGUI(inventory.getAllProducts());
+        }
+    }
 }
