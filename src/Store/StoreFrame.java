@@ -14,7 +14,9 @@ public class StoreFrame extends JFrame implements StoreView {
     {
         super("Baseball Exclusives");
         this.controller = controller;
-        mainPanel = new JPanel(new GridBagLayout());
+        //mainPanel = new JPanel(new GridBagLayout());
+        mainPanel = new JPanel();
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         /*** todo use for dual panel
         JPanel productPanel = new JPanel();
@@ -40,17 +42,20 @@ public class StoreFrame extends JFrame implements StoreView {
         mainPanel.add(cartPanel,gbc);
         **/
 
-        this.add(mainPanel);
+        this.add(scrollPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,300);
         this.setPreferredSize(new Dimension(600,300));
         this.setVisible(true);
+
+        //controller.updateModelProducts();
     }
 
     public void addProductsToGUI(Collection<Product> products)
     {
 
-        JPanel productView = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JPanel productView = new JPanel();
+        productView.setLayout(new BoxLayout(productView, BoxLayout.Y_AXIS));
         for(Product product:products)
         {
 
@@ -82,9 +87,9 @@ public class StoreFrame extends JFrame implements StoreView {
             buttonPanel.add(addBtn);
             buttonPanel.add(removeBtn);
             productView.add(buttonPanel);
-
         }
 
         mainPanel.add(productView);
+        this.validate();
     }
 }

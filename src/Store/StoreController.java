@@ -13,10 +13,17 @@ public class StoreController implements ActionListener {
         model.setCustomer(customer);
         view = new StoreFrame(this);
         model.addView(view);
+        updateModelProducts();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
+
+    public void updateModelProducts()
+    {
+        model.setInventory();
+    }
+
 }
