@@ -82,7 +82,7 @@ public class Login {
     {
         try
         {
-            customerId = resultSet.getInt("id");
+            customerId = resultSet.getInt("customerId");
             for (LoginView v:views)
             {
                 v.loginSuccessful();

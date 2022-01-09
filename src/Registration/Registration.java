@@ -106,7 +106,7 @@ public class Registration {
                 ResultSet resultSet = statement.executeQuery();
                 if(resultSet.next())
                 {
-                    customerId = resultSet.getInt("id");
+                    customerId = resultSet.getInt("customerId");
                 }
 
 
