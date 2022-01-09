@@ -32,7 +32,7 @@ public class StoreController implements ActionListener {
                 model.getCustomerCartInText();
                 break;
             case "checkout":
-                //model.
+                model.customerCheckout();
                 break;
             default:
                 break;
