@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Store {
@@ -115,24 +116,33 @@ public class Store {
     private String turnCartToText()
     {
         StringBuilder cart = new StringBuilder();
-        String format = "%-30s %5s %10s\n";
-        String formatForProducts = "%.30s %5d %10.2f\n";
+        Collection<Product> cartProducts = customer.getAllProducts();
 
-        cart.append(String.format(format, "Item", "Qty", "Price"));
-        cart.append(String.format(format, "----", "---", "-----"));
-
-        for(Product product: customer.getAllProducts())
+        if(cartProducts.size()>0)
         {
-            String itemName = product.getName();
-            int qty = customer.getProductStock(product);
-            double price = product.getPrice();
-            cart.append(String.format(formatForProducts, itemName, qty, price));
-        }
-        double total = customer.getTotalCost();
+            String format = "%-30s %5s %10s\n";
+            String formatForProducts = "%.30s %5d %10.2f\n";
 
-        cart.append(String.format(format, "----", "---", "-----"));
-        cart.append("Total: ");
-        cart.append(total);
+            cart.append(String.format(format, "Item", "Qty", "Price"));
+            cart.append(String.format(format, "----", "---", "-----"));
+
+            for(Product product: customer.getAllProducts())
+            {
+                String itemName = product.getName();
+                int qty = customer.getProductStock(product);
+                double price = product.getPrice();
+                cart.append(String.format(formatForProducts, itemName, qty, price));
+            }
+            double total = customer.getTotalCost();
+
+            cart.append(String.format(format, "----", "---", "-----"));
+            cart.append("Total: ");
+            cart.append(total);
+        }
+        else
+        {
+            cart.append("The Shopping Cart is Empty");
+        }
 
         return cart.toString();
     }

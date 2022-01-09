@@ -19,7 +19,7 @@ public class StoreFrame extends JFrame implements StoreView {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);;
+        JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
 
         JButton checkoutBtn = new JButton("View Cart");
@@ -98,5 +98,14 @@ public class StoreFrame extends JFrame implements StoreView {
     private void setRemoveBtnEnable(ProductView productView, Boolean enable)
     {
         productView.setRemoveBtnEnable(enable);
+    }
+
+    @Override
+    public void displayCustomerCart(String cart)
+    {
+        JOptionPane.showMessageDialog(this,
+                cart,
+                "Current Shopping Cart",
+                JOptionPane.PLAIN_MESSAGE);
     }
 }
