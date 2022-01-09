@@ -72,7 +72,7 @@ public class Store {
         DatabaseConnection.closeConnection();
     }
 
-    public void setGUIProducts()
+    private void setGUIProducts()
     {
         for (StoreView v:views)
         {
