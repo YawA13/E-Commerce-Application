@@ -6,7 +6,7 @@ public interface StoreView {
 
     void addProductsToGUI(Collection<Product> products);
 
-    void updateCustomerCart(Product product);
+    void updateCustomerCart(Product product, int stock);
 
 
 }

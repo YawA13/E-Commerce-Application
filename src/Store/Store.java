@@ -97,9 +97,10 @@ public class Store {
 
     private void updateViewCart(Product product)
     {
+        int stock = inventory.getProductStock(product);
         for (StoreView v:views)
         {
-           v.updateCustomerCart(product);
+           v.updateCustomerCart(product, stock);
         }
     }
 

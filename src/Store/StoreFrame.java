@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 public class StoreFrame extends JFrame implements StoreView {
 
@@ -21,7 +20,8 @@ public class StoreFrame extends JFrame implements StoreView {
         mainPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
-        /*** todo use for dual panel
+        /***
+        todo use for dual panel
         mainPanel = new JPanel(new GridBagLayout());
         JPanel productPanel = new JPanel();
         JPanel cartPanel = new JPanel();
@@ -72,7 +72,7 @@ public class StoreFrame extends JFrame implements StoreView {
         this.validate();
     }
 
-    public void updateCustomerCart(Product product)
+    public void updateCustomerCart(Product product, int stock)
     {
 
     }
