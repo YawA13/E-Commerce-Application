@@ -156,4 +156,22 @@ public class Store {
             v.displayCustomerCart(cartText);
         }
     }
+
+    public void customerCheckout()
+    {
+        if (customer.getAllProducts().size()>0)
+        {
+            for (StoreView v:views)
+            {
+                v.checkoutSuccessful();
+            }
+        }
+        else
+        {
+            for (StoreView v:views)
+            {
+                v.checkoutFailed();
+            }
+        }
+    }
 }
