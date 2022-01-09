@@ -112,4 +112,38 @@ public class Store {
         }
     }
 
+    private String turnCartToText()
+    {
+        StringBuilder cart = new StringBuilder();
+        String format = "%-30s %5s %10s\n";
+        String formatForProducts = "%.30s %5d %10.2f\n";
+
+        cart.append(String.format(format, "Item", "Qty", "Price"));
+        cart.append(String.format(format, "----", "---", "-----"));
+
+        for(Product product: customer.getAllProducts())
+        {
+            String itemName = product.getName();
+            int qty = customer.getProductStock(product);
+            double price = product.getPrice();
+            cart.append(String.format(formatForProducts, itemName, qty, price));
+        }
+        double total = customer.getTotalCost();
+
+        cart.append(String.format(format, "----", "---", "-----"));
+        cart.append("Total: ");
+        cart.append(total);
+
+        return cart.toString();
+    }
+
+    public void getCustomerCartInText()
+    {
+        String cartText = turnCartToText();
+
+        for (StoreView v:views)
+        {
+            v.displayCustomerCart(cartText);
+        }
+    }
 }
