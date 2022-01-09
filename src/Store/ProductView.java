@@ -1,6 +1,7 @@
 package Store;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -16,11 +17,10 @@ public class ProductView extends JPanel {
         String productPrice = String.valueOf(product.getPrice());
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBackground(Color.GREEN);
 
         JLabel image = new JLabel(new ImageIcon(getClass().getResource(productImg)));
         JLabel titleText = new JLabel(productName);
-        JLabel priceText = new JLabel(productPrice);
+        JLabel priceText = new JLabel("$"+productPrice);
 
         JPanel buttonPanel = new JPanel();
         addBtn = new JButton("+");
@@ -31,6 +31,17 @@ public class ProductView extends JPanel {
 
         addBtn.putClientProperty("product",product);
         removeBtn.putClientProperty("product",product);
+
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        this.setBorder(blackline);
+
+        image.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        priceText.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        titleText.setFont(new Font("Serif", Font.PLAIN, 18));
+        priceText.setFont(new Font("Serif", Font.PLAIN, 18));
+
 
         this.add(image);
         this.add(titleText);
