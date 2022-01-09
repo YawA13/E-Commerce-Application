@@ -23,10 +23,10 @@ public class StoreController implements ActionListener {
         switch (e.getActionCommand())
         {
             case "add":
-                //getProductFromButton(e);
+                model.customerAddProduct(getProductFromButton(e));
                 break;
             case "remove":
-               // getProductFromButton(e);
+               model.customerRemoveProduct(getProductFromButton(e));
                 break;
             default:
                 break;
