@@ -64,6 +64,7 @@ public class StoreFrame extends JFrame implements StoreView {
 
             ProductView productView = new ProductView(productImg,productName,productPrice);
             productView.setButtonController(controller);
+            productView.setRemoveBtnEnable(false);
 
             productViews.put(product,productView);
             mainPanel.add(productView);
