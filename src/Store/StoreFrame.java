@@ -22,15 +22,17 @@ public class StoreFrame extends JFrame implements StoreView {
         JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
 
-        JButton checkoutBtn = new JButton("View Cart");
-        checkoutBtn.setActionCommand("view cart");
-        checkoutBtn.addActionListener(controller);
+        JButton viewCartBtn = new JButton("View Cart");
+        viewCartBtn.setActionCommand("view cart");
+        viewCartBtn.addActionListener(controller);
+
+
 
         productPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         mainPanel.add(titleText,BorderLayout.PAGE_START);
-        mainPanel.add(checkoutBtn, BorderLayout.PAGE_END);
+        mainPanel.add(viewCartBtn, BorderLayout.PAGE_END);
         mainPanel.add(productPanel, BorderLayout.CENTER);
 
         /***
@@ -61,7 +63,7 @@ public class StoreFrame extends JFrame implements StoreView {
 
         this.add(scrollPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600,300);
+        this.setSize(900,400);
         this.setPreferredSize(new Dimension(600,300));
         this.setVisible(true);
 
