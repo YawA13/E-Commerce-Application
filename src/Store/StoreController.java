@@ -28,6 +28,9 @@ public class StoreController implements ActionListener {
             case "remove":
                model.customerRemoveProduct(getProductFromButton(e));
                 break;
+            case "view cart":
+                model.getCustomerCartInText();
+                break;
             default:
                 break;
         }
