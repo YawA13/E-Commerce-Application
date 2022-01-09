@@ -51,4 +51,11 @@ public class StoreController implements ActionListener {
         Product product = (Product) ((JButton) e.getSource()).getClientProperty("product");
         return product;
     }
+
+    public void CheckoutSuccessful()
+    {
+        view.dispose();
+        System.exit(0);
+        // TODO: 2022-01-09 go back to main screen or end program or send to order page
+    }
 }

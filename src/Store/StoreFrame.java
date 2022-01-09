@@ -123,6 +123,7 @@ public class StoreFrame extends JFrame implements StoreView {
                 "You have successfully purchased your items",
                 "Checkout Successful",
                 JOptionPane.INFORMATION_MESSAGE);
+        controller.CheckoutSuccessful();
     }
 
     @Override
