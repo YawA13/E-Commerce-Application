@@ -3,17 +3,21 @@ package Store;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class StoreFrame extends JFrame implements StoreView {
 
     private StoreController controller;
     private JPanel mainPanel;
+    private HashMap<Product,ProductView> productViews;
 
     public StoreFrame(StoreController controller)
     {
         super("Baseball Exclusives");
         this.controller = controller;
+        this.productViews = new HashMap<>();
+
         mainPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
@@ -52,40 +56,16 @@ public class StoreFrame extends JFrame implements StoreView {
 
     public void addProductsToGUI(Collection<Product> products)
     {
-
         for(Product product:products)
         {
-            JPanel productView = new JPanel();
-            productView.setLayout(new BoxLayout(productView, BoxLayout.Y_AXIS));
-            productView.setBackground(Color.GREEN);
             String productImg = product.getImgUrl();
             String productName = product.getName();
             String productPrice = String.valueOf(product.getPrice());
 
-            JLabel image = new JLabel(new ImageIcon(getClass().getResource(productImg)));
-            JLabel titleText = new JLabel(productName);
-            JLabel priceText = new JLabel(productPrice);
+            ProductView productView = new ProductView(productImg,productName,productPrice);
+            productView.setButtonController(controller);
 
-            JPanel buttonPanel = new JPanel();
-            JButton addBtn = new JButton("+");
-            JButton removeBtn = new JButton("-");
-
-            addBtn.setActionCommand("add");
-            removeBtn.setActionCommand("remove");
-
-            addBtn.addActionListener(controller);
-            removeBtn.addActionListener(controller);
-
-            addBtn.putClientProperty("product",product);
-            removeBtn.putClientProperty("product",product);
-
-            productView.add(image);
-            productView.add(titleText);
-            productView.add(priceText);
-
-            buttonPanel.add(addBtn);
-            buttonPanel.add(removeBtn);
-            productView.add(buttonPanel);
+            productViews.put(product,productView);
             mainPanel.add(productView);
         }
 
