@@ -157,9 +157,22 @@ public class Store {
         }
     }
 
+    private boolean isOrderSuccessful()
+    {
+        // TODO: 2022-01-09 implement method to check with database
+        if(customer.getAllProducts().size()>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void customerCheckout()
     {
-        if (customer.getAllProducts().size()>0)
+        if (isOrderSuccessful())
         {
             for (StoreView v:views)
             {
@@ -174,4 +187,7 @@ public class Store {
             }
         }
     }
+
+
 }
+
