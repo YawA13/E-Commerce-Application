@@ -40,4 +40,14 @@ public class ProductView extends JPanel {
         removeBtn.addActionListener(controller);
     }
 
+    public void setAddBtnEnable(boolean enable)
+    {
+        addBtn.setEnabled(enable);
+    }
+
+    public void setRemoveBtnEnable(boolean enable)
+    {
+        removeBtn.setEnabled(enable);
+    }
+
 }
