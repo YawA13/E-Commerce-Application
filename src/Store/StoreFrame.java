@@ -72,8 +72,21 @@ public class StoreFrame extends JFrame implements StoreView {
         this.validate();
     }
 
-    public void updateCustomerCart(Product product, int stock)
+    public void updateCustomerCart(Product product, boolean addEnable, boolean removeEnable)
     {
+        ProductView productView = productViews.get(product);
+        setAddBtnEnable(productView,addEnable);
+        setRemoveBtnEnable(productView, removeEnable);
 
+    }
+
+    private void setAddBtnEnable(ProductView productView, Boolean enable)
+    {
+        productView.setAddBtnEnable(enable);
+    }
+
+    private void setRemoveBtnEnable(ProductView productView, Boolean enable)
+    {
+        productView.setRemoveBtnEnable(enable);
     }
 }

@@ -95,12 +95,12 @@ public class Store {
         updateViewCart(product);
     }
 
-    private void updateViewCart(Product product)
+    private void updateViewCart(Product product, boolean addEnable, boolean removeEnable)
     {
-        int stock = inventory.getProductStock(product);
+
         for (StoreView v:views)
         {
-           v.updateCustomerCart(product, stock);
+           v.updateCustomerCart(product, addEnable, removeEnable);
         }
     }
 
