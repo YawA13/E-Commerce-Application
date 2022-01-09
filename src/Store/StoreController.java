@@ -31,6 +31,9 @@ public class StoreController implements ActionListener {
             case "view cart":
                 model.getCustomerCartInText();
                 break;
+            case "checkout":
+                //model.
+                break;
             default:
                 break;
         }
