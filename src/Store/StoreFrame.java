@@ -8,17 +8,30 @@ import java.util.HashMap;
 public class StoreFrame extends JFrame implements StoreView {
 
     private StoreController controller;
-    private JPanel mainPanel;
+    private JPanel productPanel;
     private HashMap<Product,ProductView> productViews;
 
     public StoreFrame(StoreController controller)
     {
-        super("Baseball Exclusives");
+        super("Welcome");
         this.controller = controller;
         this.productViews = new HashMap<>();
 
-        mainPanel = new JPanel(new WrapLayout());
+        JPanel mainPanel = new JPanel(new BorderLayout());
+
+        JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);;
+        titleText.setFont(new Font("Serif", Font.PLAIN, 18));
+
+        JButton checkoutBtn = new JButton("View Cart");
+        checkoutBtn.setActionCommand("view cart");
+        checkoutBtn.addActionListener(controller);
+
+        productPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
+
+        mainPanel.add(titleText,BorderLayout.PAGE_START);
+        mainPanel.add(checkoutBtn, BorderLayout.PAGE_END);
+        mainPanel.add(productPanel, BorderLayout.CENTER);
 
         /***
         todo use for dual panel
@@ -63,7 +76,7 @@ public class StoreFrame extends JFrame implements StoreView {
             productView.setRemoveBtnEnable(false);
 
             productViews.put(product,productView);
-            mainPanel.add(productView);
+            productPanel.add(productView);
         }
 
         this.validate();
