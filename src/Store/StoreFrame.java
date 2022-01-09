@@ -116,4 +116,21 @@ public class StoreFrame extends JFrame implements StoreView {
                 "Current Shopping Cart",
                 JOptionPane.PLAIN_MESSAGE);
     }
+
+    @Override
+    public void checkoutSuccessful() {
+        JOptionPane.showMessageDialog(this,
+                "You have successfully purchased your items",
+                "Checkout Successful",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void checkoutFailed() {
+
+        JOptionPane.showMessageDialog(this,
+                "Checkout failed. Please try again",
+                "Checkout Failed",
+                JOptionPane.ERROR_MESSAGE);
+    }
 }

@@ -9,4 +9,8 @@ public interface StoreView {
     void updateCustomerCart(Product product, boolean addEnable, boolean removeEnable);
 
     void displayCustomerCart(String cart);
+
+    void checkoutSuccessful();
+
+    void checkoutFailed();
 }
