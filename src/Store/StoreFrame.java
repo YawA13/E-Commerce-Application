@@ -71,4 +71,9 @@ public class StoreFrame extends JFrame implements StoreView {
 
         this.validate();
     }
+
+    public void updateCustomerCart(Product product)
+    {
+
+    }
 }

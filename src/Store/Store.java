@@ -63,7 +63,7 @@ public class Store {
                 Product product = new Product(productId,productName,productPrice,productImg);
                 inventory.add(product, productStock);
             }
-            updateGUIProducts();
+            setGUIProducts();
         }
         catch (SQLException e)
         {
@@ -72,11 +72,35 @@ public class Store {
         DatabaseConnection.closeConnection();
     }
 
-    public void updateGUIProducts()
+    public void setGUIProducts()
     {
         for (StoreView v:views)
         {
             v.addProductsToGUI(inventory.getAllProducts());
         }
     }
+
+    public void customerAddProduct(Product product)
+    {
+        customer.addToCart(product, 1);
+        inventory.remove(product, 1);
+        updateViewCart(product);
+
+    }
+
+    public void customerRemoveProduct(Product product)
+    {
+        customer.removeFromCart(product,1);
+        inventory.add(product, 1);
+        updateViewCart(product);
+    }
+
+    private void updateViewCart(Product product)
+    {
+        for (StoreView v:views)
+        {
+           v.updateCustomerCart(product);
+        }
+    }
+
 }
