@@ -8,8 +8,12 @@ public class ProductView extends JPanel {
     private JButton addBtn;
     private JButton removeBtn;
 
-    public ProductView(String productImg, String productName, String productPrice)
+    public ProductView(Product product)
     {
+
+        String productImg = product.getImgUrl();
+        String productName = product.getName();
+        String productPrice = String.valueOf(product.getPrice());
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.GREEN);
@@ -24,6 +28,9 @@ public class ProductView extends JPanel {
 
         addBtn.setActionCommand("add");
         removeBtn.setActionCommand("remove");
+
+        addBtn.putClientProperty("product",product);
+        removeBtn.putClientProperty("product",product);
 
         this.add(image);
         this.add(titleText);

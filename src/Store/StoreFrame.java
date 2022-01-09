@@ -58,11 +58,7 @@ public class StoreFrame extends JFrame implements StoreView {
     {
         for(Product product:products)
         {
-            String productImg = product.getImgUrl();
-            String productName = product.getName();
-            String productPrice = String.valueOf(product.getPrice());
-
-            ProductView productView = new ProductView(productImg,productName,productPrice);
+            ProductView productView = new ProductView(product);
             productView.setButtonController(controller);
             productView.setRemoveBtnEnable(false);
 
