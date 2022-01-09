@@ -84,7 +84,12 @@ public class Store {
     {
         customer.addToCart(product, 1);
         inventory.remove(product, 1);
-        updateViewCart(product);
+
+        int stockLeft = inventory.getProductStock(product);
+        boolean addEnabel = (stockLeft==0)?false:true;
+        boolean removeEnabel = true;
+
+        updateViewCart(product, addEnabel,removeEnabel);
 
     }
 
@@ -92,12 +97,15 @@ public class Store {
     {
         customer.removeFromCart(product,1);
         inventory.add(product, 1);
-        updateViewCart(product);
+
+        boolean addEnabel = true;
+        boolean removeEnabel = customer.contains(product);
+
+        updateViewCart(product, addEnabel,removeEnabel);
     }
 
     private void updateViewCart(Product product, boolean addEnable, boolean removeEnable)
     {
-
         for (StoreView v:views)
         {
            v.updateCustomerCart(product, addEnable, removeEnable);
