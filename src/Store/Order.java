@@ -3,8 +3,6 @@ package Store;
 import General.DatabaseConnection;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
 
@@ -12,6 +10,7 @@ public class Order {
     private Date date;
     private ProductStockCollection cart;
     private int orderId;
+    private String message;
 
     public Order(int id, ProductStockCollection cart)
     {
@@ -19,6 +18,7 @@ public class Order {
         date = null;
         this.cart = cart;
         orderId = 0;
+        message = null;
     }
 
     public void setCurrentDate() {
@@ -42,6 +42,7 @@ public class Order {
                 updateOrderDetailsTable(connection);
                 return true;
             }
+            message = "Not all the items in your cart are not available";
 
         }
         catch (SQLException e)
@@ -49,6 +50,7 @@ public class Order {
             e.printStackTrace();
             connection.rollback(savepoint1);
             DatabaseConnection.closeConnection();
+            message = "Problem with the Database. Please try again";
             return false;
         }
 
@@ -154,6 +156,11 @@ public class Order {
         {
             e.printStackTrace();
         }
+    }
+
+    public String getMessage()
+    {
+        return message;
     }
 
 }
