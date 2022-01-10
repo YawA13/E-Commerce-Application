@@ -49,7 +49,7 @@ public class Order {
     }
 
 
-    private boolean checkDbInventory(Connection connection)
+    private boolean checkProductTable(Connection connection)
     {
         try
         {
