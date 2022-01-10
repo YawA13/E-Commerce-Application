@@ -119,7 +119,12 @@ public class Order {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1,customerId);
             statement.setDate(2,date);
+            statement.execute();
 
+
+            statement = connection.prepareStatement("select * from products where customerId = ? and date = ?");
+            statement.setInt(1,customerId);
+            statement.setDate(2,date);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next())
             {
