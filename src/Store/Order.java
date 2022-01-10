@@ -3,6 +3,8 @@ package Store;
 import General.DatabaseConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 
@@ -45,4 +47,34 @@ public class Order {
         }
 
     }
+
+
+    private boolean checkDbInventory(Connection connection)
+    {
+        try
+        {
+            for (Product product: cart.getAllProducts())
+            {
+                int productId = product.getId();
+                int stock = cart.getProductStock(product);
+                PreparedStatement statement = connection.prepareStatement("select * from products where productId=? and stock >= ?");
+                statement.setInt(1,productId);
+                statement.setInt(2,stock);
+                ResultSet resultSet = statement.executeQuery();
+                if (!resultSet.next()) {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }
