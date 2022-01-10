@@ -70,7 +70,7 @@ public class ProductStockMap implements ProductStockCollection {
 
     public double getTotalCost()
     {
-        int total = 0;
+        double total = 0;
         for (Product product: list.keySet())
         {
             total += getTotalCost(product);
