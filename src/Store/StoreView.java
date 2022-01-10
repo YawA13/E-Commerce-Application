@@ -12,5 +12,5 @@ public interface StoreView {
 
     void checkoutSuccessful();
 
-    void checkoutFailed();
+    void checkoutFailed(String message);
 }

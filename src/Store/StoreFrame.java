@@ -127,10 +127,10 @@ public class StoreFrame extends JFrame implements StoreView {
     }
 
     @Override
-    public void checkoutFailed() {
+    public void checkoutFailed(String message) {
 
         JOptionPane.showMessageDialog(this,
-                "Checkout failed. Please try again",
+                "Checkout failed"+message,
                 "Checkout Failed",
                 JOptionPane.ERROR_MESSAGE);
     }
