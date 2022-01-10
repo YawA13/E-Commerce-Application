@@ -55,7 +55,7 @@ public class Store {
             while (resultSet.next())
             {
 
-                int productId = resultSet.getInt("id");
+                int productId = resultSet.getInt("productId");
                 String productName = resultSet.getString("name");
                 double productPrice = resultSet.getDouble("price");
                 String productImg = resultSet.getString("img");
