@@ -11,14 +11,14 @@ public class Order {
     private int customerId;
     private Date date;
     private ProductStockCollection cart;
-    private int orderDetailId;
+    private int orderId;
 
     public Order(int id, ProductStockCollection cart)
     {
         customerId = id;
         date = null;
         this.cart = cart;
-        orderDetailId = 0;
+        orderId = 0;
     }
 
     public void setCurrentDate() {
@@ -107,12 +107,36 @@ public class Order {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1,customerId);
             statement.setDate(2,date);
-            statement.execute();
 
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next())
             {
-                orderDetailId = resultSet.getInt("orderId");
+                orderId = resultSet.getInt("orderId");
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateOrderDetailsTable(Connection connection)
+    {
+        try
+        {
+            for (Product product: cart.getAllProducts())
+            {
+                int productId = product.getId();
+                int quantity = cart.getProductStock(product);
+
+                String query = "insert into orderdetails (orderId, productId, quantity) values (?,?,?)";
+                PreparedStatement statement = connection.prepareStatement(query);
+
+                statement.setInt(1,orderId);
+                statement.setInt(2,productId);
+                statement.setInt(3,quantity);
+                statement.execute();
             }
 
         }
