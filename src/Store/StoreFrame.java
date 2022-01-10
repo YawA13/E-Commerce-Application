@@ -130,7 +130,7 @@ public class StoreFrame extends JFrame implements StoreView {
     public void checkoutFailed(String message) {
 
         JOptionPane.showMessageDialog(this,
-                "Checkout failed"+message,
+                "Checkout failed. "+message,
                 "Checkout Failed",
                 JOptionPane.ERROR_MESSAGE);
     }
