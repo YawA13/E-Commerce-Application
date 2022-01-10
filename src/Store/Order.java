@@ -35,7 +35,13 @@ public class Order {
             connection.setAutoCommit(false);
             savepoint1 = connection.setSavepoint("Savepoint1");
 
-            return true;
+            if(checkProductTable(connection))
+            {
+                updateProductsTable(connection);
+                updateOrdersTable(connection);
+                updateOrderDetailsTable(connection);
+                return true;
+            }
 
         }
         catch (SQLException e)
@@ -45,6 +51,10 @@ public class Order {
             DatabaseConnection.closeConnection();
             return false;
         }
+
+        connection.rollback(savepoint1);
+        DatabaseConnection.closeConnection();
+        return false;
 
     }
 
