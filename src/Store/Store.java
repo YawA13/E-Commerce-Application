@@ -120,23 +120,23 @@ public class Store {
 
         if(cartProducts.size()>0)
         {
-            String format = "%-30s %5s %10s\n";
-            String formatForProducts = "%.30s %5d %10.2f\n";
-
-            cart.append(String.format(format, "Item", "Qty", "Price"));
-            cart.append(String.format(format, "----", "---", "-----"));
 
             for(Product product: customer.getAllProducts())
             {
                 String itemName = product.getName();
                 int qty = customer.getProductStock(product);
                 double price = product.getPrice();
-                cart.append(String.format(formatForProducts, itemName, qty, price));
+                cart.append(itemName);
+                cart.append("  QTY:");
+                cart.append(qty);
+                cart.append("  PRICE:$");
+                cart.append(price);
+                cart.append("\n");
             }
             double total = customer.getTotalCost();
 
-            cart.append(String.format(format, "----", "---", "-----"));
-            cart.append("Total: ");
+            cart.append("\n");
+            cart.append("Total: $");
             cart.append(total);
         }
         else
