@@ -40,21 +40,27 @@ public class Order {
                 updateProductsTable(connection);
                 updateOrdersTable(connection);
                 updateOrderDetailsTable(connection);
+                connection.commit();
+                connection.setAutoCommit(true);
+                DatabaseConnection.closeConnection();
                 return true;
             }
-            message = "Not all the items in your cart are not available";
+            message = "Not all the items in your cart are available";
+
 
         }
         catch (SQLException e)
         {
             e.printStackTrace();
             connection.rollback(savepoint1);
+            connection.setAutoCommit(true);
             DatabaseConnection.closeConnection();
             message = "Problem with the Database. Please try again";
             return false;
         }
 
         connection.rollback(savepoint1);
+        connection.setAutoCommit(true);
         DatabaseConnection.closeConnection();
         return false;
 
@@ -122,7 +128,7 @@ public class Order {
             statement.execute();
 
 
-            statement = connection.prepareStatement("select * from products where customerId = ? and date = ?");
+            statement = connection.prepareStatement("select * from orders where customerId = ? and date = ?");
             statement.setInt(1,customerId);
             statement.setDate(2,date);
             ResultSet resultSet = statement.executeQuery();
