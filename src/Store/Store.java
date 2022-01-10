@@ -157,34 +157,49 @@ public class Store {
         }
     }
 
-    private boolean isOrderSuccessful()
-    {
-        // TODO: 2022-01-09 implement method to check with database
-        if(customer.getAllProducts().size()>0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public void customerCheckout()
     {
-        if (isOrderSuccessful())
+        if(customer.getAllProducts().size()>0)
         {
-            for (StoreView v:views)
+            try
             {
-                v.checkoutSuccessful();
+                Order order = new Order(customer.getId(), customer.getShoppingCart());
+                order.setCurrentDate();
+                if(order.saveOrderToDb())
+                {
+                    checkoutSuccessful();
+                }
+                else
+                {
+                    checkoutFailed(order.getMessage());
+                }
+
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
             }
         }
         else
         {
-            for (StoreView v:views)
-            {
-                v.checkoutFailed();
-            }
+            checkoutFailed("No Items in Cart");
+        }
+    }
+
+
+    private void checkoutSuccessful()
+    {
+        for (StoreView v:views)
+        {
+            v.checkoutSuccessful();
+        }
+    }
+
+    private void checkoutFailed(String msg)
+    {
+        for (StoreView v:views)
+        {
+            v.checkoutFailed(msg);
         }
     }
 
