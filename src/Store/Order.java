@@ -76,7 +76,7 @@ public class Order {
         }
     }
 
-    private void updateInventoryDb(Connection connection)
+    private void updateProductsTable(Connection connection)
     {
         try
         {
@@ -97,4 +97,6 @@ public class Order {
             e.printStackTrace();
         }
     }
+
+
 }
