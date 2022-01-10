@@ -76,5 +76,25 @@ public class Order {
         }
     }
 
+    private void updateInventoryDb(Connection connection)
+    {
+        try
+        {
+            for (Product product: cart.getAllProducts())
+            {
+                int productId = product.getId();
+                int stock = cart.getProductStock(product);
 
+                PreparedStatement statement = connection.prepareStatement("Update products set stock = stock - ? where productId = ?");
+                statement.setInt(1,stock);
+                statement.setInt(2,productId);
+                statement.execute();
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
