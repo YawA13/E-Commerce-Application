@@ -1,17 +1,14 @@
 package Store;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class ProductStockMap implements ProductStockCollection {
 
-    private HashMap<Product,Integer> list;
+    private Map<Product,Integer> list;
 
     public ProductStockMap()
     {
-        list = new HashMap<>();
+        list = new LinkedHashMap<>();
     }
 
     public boolean contains(Product product)
