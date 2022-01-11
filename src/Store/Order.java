@@ -178,4 +178,14 @@ public class Order {
         return message;
     }
 
+
+    private void removeProductFromCart(Product product) {
+        customer.removeAll(product);
+    }
+
+    public ProductStockCollection getCustomerCart()
+    {
+        return customer.getShoppingCart();
+    }
+
 }
