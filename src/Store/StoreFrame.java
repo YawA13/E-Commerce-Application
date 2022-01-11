@@ -77,6 +77,7 @@ public class StoreFrame extends JFrame implements StoreView {
 
     public void addProductsToGUI(ProductStockCollection inventory, ProductStockCollection cart)
     {
+        productPanel.removeAll();
         for(Product product:inventory.getAllProducts())
         {
             ProductView productView = new ProductView(product);

@@ -63,6 +63,11 @@ public class Store {
 
                 Product product = new Product(productId,productName,productPrice,productImg);
                 inventory.add(product, productStock);
+
+                if(customer.contains(product))
+                {
+                    inventory.remove(product,customer.getProductStock(product));
+                }
             }
             setGUIProducts();
         }
@@ -208,6 +213,9 @@ public class Store {
         {
             v.checkoutFailed(msg);
         }
+
+        inventory = new ProductStockMap();
+        setInventory();
     }
 
 
