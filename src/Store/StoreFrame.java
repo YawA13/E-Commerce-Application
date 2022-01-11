@@ -75,13 +75,22 @@ public class StoreFrame extends JFrame implements StoreView {
 
     }
 
-    public void addProductsToGUI(Collection<Product> products)
+    public void addProductsToGUI(ProductStockCollection inventory, ProductStockCollection cart)
     {
-        for(Product product:products)
+        for(Product product:inventory.getAllProducts())
         {
             ProductView productView = new ProductView(product);
             productView.setButtonController(controller);
-            productView.setRemoveBtnEnable(false);
+
+            if(inventory.getProductStock(product)<1)
+            {
+                productView.setAddBtnEnable(false);
+            }
+
+            if (!cart.contains(product))
+            {
+                productView.setRemoveBtnEnable(false);
+            }
 
             productViews.put(product,productView);
             productPanel.add(productView);

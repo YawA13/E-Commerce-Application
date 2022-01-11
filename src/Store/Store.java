@@ -77,7 +77,7 @@ public class Store {
     {
         for (StoreView v:views)
         {
-            v.addProductsToGUI(inventory.getAllProducts());
+            v.addProductsToGUI(inventory,customer.getShoppingCart());
         }
     }
 

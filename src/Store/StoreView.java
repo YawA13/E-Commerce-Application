@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface StoreView {
 
-    void addProductsToGUI(Collection<Product> products);
+    void addProductsToGUI(ProductStockCollection inventory, ProductStockCollection cart);
 
     void updateCustomerCart(Product product, boolean addEnable, boolean removeEnable);
 
