@@ -46,11 +46,18 @@ public class Store {
 
     public void setInventory() {
 
+       getInventoryFromDb("select * from products");
+       setGUIProducts();
+    }
+
+
+    private void getInventoryFromDb(String selectionChoice)
+    {
         Connection connection = DatabaseConnection.getConnection();
 
         try
         {
-            PreparedStatement statement = connection.prepareStatement("select * from products");
+            PreparedStatement statement = connection.prepareStatement(selectionChoice);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next())
             {
@@ -69,7 +76,6 @@ public class Store {
                     inventory.remove(product,customer.getProductStock(product));
                 }
             }
-            setGUIProducts();
         }
         catch (SQLException e)
         {
