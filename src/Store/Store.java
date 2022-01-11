@@ -173,6 +173,8 @@ public class Store {
                 else
                 {
                     checkoutFailed(order.getMessage());
+                    ProductStockCollection updatedCart = order.getCustomerCart();
+                    customer.setShoppingCart(updatedCart);
                 }
 
             } catch (SQLException e)
