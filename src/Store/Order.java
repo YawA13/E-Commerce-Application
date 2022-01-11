@@ -3,6 +3,9 @@ package Store;
 import General.DatabaseConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Order {
 
@@ -71,8 +74,10 @@ public class Order {
 
         try
         {
-            for (Product product: customer.getAllProducts())
+            Iterator<Product> iterator = customer.getAllProducts().iterator();
+            while (iterator.hasNext())
             {
+                Product product = iterator.next();
                 int productId = product.getId();
                 int stock = customer.getProductStock(product);
                 PreparedStatement statement = connection.prepareStatement("select * from products where productId=? and stock >= ?");
@@ -83,8 +88,10 @@ public class Order {
                 if (!resultSet.next())
                 {
                     isCheckSuccessful =  false;
-                    removeProductFromCart(product);
+                    iterator.remove();
                 }
+
+
             }
 
 
@@ -178,10 +185,6 @@ public class Order {
         return message;
     }
 
-
-    private void removeProductFromCart(Product product) {
-        customer.removeAll(product);
-    }
 
     public ProductStockCollection getCustomerCart()
     {
