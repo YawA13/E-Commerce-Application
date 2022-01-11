@@ -46,5 +46,8 @@ public class Product {
         }
     }
 
-
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
 }
