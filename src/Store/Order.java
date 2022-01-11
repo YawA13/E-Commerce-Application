@@ -67,6 +67,8 @@ public class Order {
 
     private boolean checkProductTable(Connection connection)
     {
+        boolean isCheckSuccessful = true;
+
         try
         {
             for (Product product: customer.getAllProducts())
@@ -77,19 +79,23 @@ public class Order {
                 statement.setInt(1,productId);
                 statement.setInt(2,stock);
                 ResultSet resultSet = statement.executeQuery();
-                if (!resultSet.next()) {
-                    return false;
+
+                if (!resultSet.next())
+                {
+                    isCheckSuccessful =  false;
+                    removeProductFromCart(product);
                 }
             }
 
-            return true;
 
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            return false;
+            isCheckSuccessful = false;
         }
+
+        return isCheckSuccessful;
     }
 
     private void updateProductsTable(Connection connection)
