@@ -22,6 +22,17 @@ public class Customer {
         return shoppingCart;
     }
 
+    public void setShoppingCart(ProductStockCollection shoppingCart)
+    {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public void removeAll(Product product)
+    {
+        int stock = getProductStock(product);
+        removeFromCart(product, stock);
+    }
+
 
     //Delegate Methods for shopping cart
     public boolean contains(Product product) {
@@ -52,11 +63,7 @@ public class Customer {
         return shoppingCart.getAllProducts();
     }
 
-    public void removeAll(Product product)
-    {
-        int stock = getProductStock(product);
-        removeFromCart(product, stock);
-    }
+
 
 
 
