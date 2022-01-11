@@ -50,6 +50,11 @@ public class Store {
        setGUIProducts();
     }
 
+    public void setInventory(String selectionChoice)
+    {
+        getInventoryFromDb(selectionChoice);
+        setGUIProducts();
+    }
 
     private void getInventoryFromDb(String selectionChoice)
     {
