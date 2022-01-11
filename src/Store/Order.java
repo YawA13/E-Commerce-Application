@@ -46,7 +46,6 @@ public class Order {
                 DatabaseConnection.closeConnection();
                 return true;
             }
-            message = "Not all the items in your cart are available";
 
 
         }
@@ -88,6 +87,7 @@ public class Order {
                 if (!resultSet.next())
                 {
                     isCheckSuccessful =  false;
+                    setFailedCheckMessage(product.getName());
                     iterator.remove();
                 }
 
@@ -189,6 +189,17 @@ public class Order {
     public ProductStockCollection getCustomerCart()
     {
         return customer.getShoppingCart();
+    }
+
+    private void setFailedCheckMessage(String productName)
+    {
+        if(message==null)
+        {
+            message = "Not all the items in your cart are available. As a result the following items have been removed from your cart:";
+        }
+
+        message += "\n"+productName;
+
     }
 
 }
