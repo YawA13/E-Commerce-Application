@@ -162,25 +162,7 @@ public class Store {
     {
         if(customer.getAllProducts().size()>0)
         {
-            try
-            {
-                Order order = new Order(customer);
-                order.setCurrentDate();
-                if(order.saveOrderToDb())
-                {
-                    checkoutSuccessful();
-                }
-                else
-                {
-                    checkoutFailed(order.getMessage());
-                    ProductStockCollection updatedCart = order.getCustomerCart();
-                    customer.setShoppingCart(updatedCart);
-                }
-
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
+            createOrder();
         }
         else
         {
@@ -188,6 +170,29 @@ public class Store {
         }
     }
 
+
+    private void createOrder()
+    {
+        try
+        {
+            Order order = new Order(customer);
+            order.setCurrentDate();
+            if(order.saveOrderToDb())
+            {
+                checkoutSuccessful();
+            }
+            else
+            {
+                ProductStockCollection updatedCart = order.getCustomerCart();
+                customer.setShoppingCart(updatedCart);
+                checkoutFailed(order.getMessage());
+            }
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     private void checkoutSuccessful()
     {
