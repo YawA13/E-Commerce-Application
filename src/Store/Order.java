@@ -6,17 +6,15 @@ import java.sql.*;
 
 public class Order {
 
-    private int customerId;
+    private Customer customer;
     private Date date;
-    private ProductStockCollection cart;
     private int orderId;
     private String message;
 
-    public Order(int id, ProductStockCollection cart)
+    public Order(Customer customer)
     {
-        customerId = id;
+        this.customer = customer;
         date = null;
-        this.cart = cart;
         orderId = 0;
         message = null;
     }
@@ -71,10 +69,10 @@ public class Order {
     {
         try
         {
-            for (Product product: cart.getAllProducts())
+            for (Product product: customer.getAllProducts())
             {
                 int productId = product.getId();
-                int stock = cart.getProductStock(product);
+                int stock = customer.getProductStock(product);
                 PreparedStatement statement = connection.prepareStatement("select * from products where productId=? and stock >= ?");
                 statement.setInt(1,productId);
                 statement.setInt(2,stock);
@@ -98,10 +96,10 @@ public class Order {
     {
         try
         {
-            for (Product product: cart.getAllProducts())
+            for (Product product: customer.getAllProducts())
             {
                 int productId = product.getId();
-                int stock = cart.getProductStock(product);
+                int stock = customer.getProductStock(product);
 
                 PreparedStatement statement = connection.prepareStatement("Update products set stock = stock - ? where productId = ?");
                 statement.setInt(1,stock);
@@ -123,13 +121,13 @@ public class Order {
         {
             String query = "insert into orders (customerId, date) values (?,?)";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,customerId);
+            statement.setInt(1,customer.getId());
             statement.setDate(2,date);
             statement.execute();
 
 
             statement = connection.prepareStatement("select * from orders where customerId = ? and date = ?");
-            statement.setInt(1,customerId);
+            statement.setInt(1,customer.getId());
             statement.setDate(2,date);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next())
@@ -148,10 +146,10 @@ public class Order {
     {
         try
         {
-            for (Product product: cart.getAllProducts())
+            for (Product product: customer.getAllProducts())
             {
                 int productId = product.getId();
-                int quantity = cart.getProductStock(product);
+                int quantity = customer.getProductStock(product);
 
                 String query = "insert into orderdetails (orderId, productId, quantity) values (?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(query);

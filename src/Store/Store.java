@@ -164,7 +164,7 @@ public class Store {
         {
             try
             {
-                Order order = new Order(customer.getId(), customer.getShoppingCart());
+                Order order = new Order(customer);
                 order.setCurrentDate();
                 if(order.saveOrderToDb())
                 {
