@@ -52,6 +52,12 @@ public class Customer {
         return shoppingCart.getAllProducts();
     }
 
+    public void removeAll(Product product)
+    {
+        int stock = getProductStock(product);
+        removeFromCart(product, stock);
+    }
+
 
 
 
