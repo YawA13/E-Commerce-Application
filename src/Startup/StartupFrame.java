@@ -44,4 +44,25 @@ public class StartupFrame extends JFrame {
         this.setVisible(true);
 
     }
+
+    @Override
+    public void register()
+    {
+        JOptionPane.showMessageDialog(this,
+                "We are redirecting you to register",
+                "Register",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        controller.register();
+    }
+
+    @Override
+    public void login()
+    {
+        JOptionPane.showMessageDialog(this,
+                "We are redirecting you to login",
+                "Login",
+                JOptionPane.ERROR_MESSAGE);
+        controller.login();
+    }
 }
