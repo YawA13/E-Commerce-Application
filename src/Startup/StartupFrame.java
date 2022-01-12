@@ -5,8 +5,7 @@ import Login.Login;
 import javax.swing.*;
 import java.awt.*;
 
-public class StartupFrame extends JFrame {
-
+public class StartupFrame extends JFrame implements  StartupView{
 
 
     public StartupFrame()
