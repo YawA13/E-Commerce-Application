@@ -1,6 +1,9 @@
 package Store;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +13,7 @@ public class StoreFrame extends JFrame implements StoreView {
     private StoreController controller;
     private JPanel productPanel;
     private HashMap<Product,ProductView> productViews;
+    private JComboBox<String> sortBtn;
 
     public StoreFrame(StoreController controller)
     {
@@ -19,8 +23,22 @@ public class StoreFrame extends JFrame implements StoreView {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
+        JPanel topPanel = new JPanel(new BorderLayout());
+        //JPanel topPanel = new JPanel(new GridLayout(2,1));
         JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
+
+        String [] sortTitles = {"Best Match","Price Low To High","Price High To Low","A-Z","Z-A"};
+        sortBtn = new JComboBox<>(sortTitles);
+        sortBtn.addActionListener(controller);
+        sortBtn.setActionCommand("sort");
+
+        JLabel sortTitle = new JLabel("Sort",SwingConstants.RIGHT);
+        sortTitle.setBorder(BorderFactory.createLineBorder(new Color(0,0,0,0), 10));
+
+        topPanel.add(titleText,BorderLayout.PAGE_START);
+        topPanel.add(sortTitle,BorderLayout.CENTER);
+        topPanel.add(sortBtn,BorderLayout.LINE_END);
 
         JPanel bottomBtnPanel = new JPanel(new GridLayout(1,2));
         JButton viewCartBtn = new JButton("View Cart");
@@ -37,7 +55,7 @@ public class StoreFrame extends JFrame implements StoreView {
         productPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
-        mainPanel.add(titleText,BorderLayout.PAGE_START);
+        mainPanel.add(topPanel,BorderLayout.PAGE_START);
         mainPanel.add(bottomBtnPanel, BorderLayout.PAGE_END);
         mainPanel.add(productPanel, BorderLayout.CENTER);
 
@@ -70,7 +88,7 @@ public class StoreFrame extends JFrame implements StoreView {
         this.add(scrollPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(900,400);
-        this.setPreferredSize(new Dimension(600,300));
+        this.setPreferredSize(new Dimension(600,400));
         this.setVisible(true);
 
     }
@@ -143,5 +161,10 @@ public class StoreFrame extends JFrame implements StoreView {
                 "Checkout failed. "+message,
                 "Checkout Failed",
                 JOptionPane.ERROR_MESSAGE);
+    }
+
+    public String getSortSelectedItem()
+    {
+        return (String) sortBtn.getSelectedItem();
     }
 }
