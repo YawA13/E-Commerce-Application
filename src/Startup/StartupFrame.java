@@ -71,4 +71,8 @@ public class StartupFrame extends JFrame implements  StartupView{
                 JOptionPane.INFORMATION_MESSAGE);
         controller.login();
     }
+
+    public static void main(String[] args) {
+        new StartupFrame();
+    }
 }
