@@ -1,7 +1,7 @@
 package Startup;
 
-import Registration.Registration;
-import Login.Login;
+import Registration.RegistrationFrame;
+import Login.LoginFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,12 +36,12 @@ public class StartupController implements ActionListener {
     public void register()
     {
         view.dispose();
-        new Registration();
+        new RegistrationFrame();
     }
 
     public void login()
     {
         view.dispose();
-        new Login();
+        new LoginFrame();
     }
 }
