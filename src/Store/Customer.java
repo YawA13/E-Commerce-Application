@@ -1,6 +1,8 @@
 package Store;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collection;
 
 public class Customer {
@@ -56,13 +58,13 @@ public class Customer {
     }
 
     public double getTotalCost() {
-        return shoppingCart.getTotalCost();
+        BigDecimal bd = new BigDecimal(shoppingCart.getTotalCost()).setScale(2, RoundingMode.HALF_EVEN);
+        return bd.doubleValue();
     }
 
     public Collection<Product> getAllProducts() {
         return shoppingCart.getAllProducts();
     }
-
 
 
 
