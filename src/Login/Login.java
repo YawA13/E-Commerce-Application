@@ -68,7 +68,7 @@ public class Login {
                 loginFailed();
             }
 
-            DatabaseConnection.closeConnection();
+
         }
         catch (SQLException e)
         {
@@ -83,6 +83,8 @@ public class Login {
         try
         {
             customerId = resultSet.getInt("customerId");
+            DatabaseConnection.closeConnection();
+
             for (LoginView v:views)
             {
                 v.loginSuccessful();
@@ -96,6 +98,7 @@ public class Login {
 
     private void loginFailed()
     {
+        DatabaseConnection.closeConnection();
         for (LoginView v:views)
         {
             v.loginFailed();

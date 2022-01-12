@@ -78,7 +78,7 @@ public class Registration {
                 registrationSuccessful();
             }
 
-            DatabaseConnection.closeConnection();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,6 +109,7 @@ public class Registration {
                     customerId = resultSet.getInt("customerId");
                 }
 
+                DatabaseConnection.closeConnection();
 
                 for (RegistrationView v : views) {
                     v.registrationSuccessful();
@@ -125,6 +126,7 @@ public class Registration {
     }
 
     private void registrationFailed() {
+        DatabaseConnection.closeConnection();
         for (RegistrationView v : views) {
             v.registrationFailed();
         }
