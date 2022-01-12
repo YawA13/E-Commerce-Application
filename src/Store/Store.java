@@ -58,6 +58,7 @@ public class Store {
 
     private void getInventoryFromDb(String selectionChoice)
     {
+        inventory = new ProductStockMap();
         Connection connection = DatabaseConnection.getConnection();
 
         try
@@ -225,7 +226,6 @@ public class Store {
             v.checkoutFailed(msg);
         }
 
-        inventory = new ProductStockMap();
         setInventory();
     }
 
