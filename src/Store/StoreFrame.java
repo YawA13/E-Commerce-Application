@@ -156,7 +156,7 @@ public class StoreFrame extends JFrame implements StoreView {
     @Override
     public void checkoutSuccessful() {
         JOptionPane.showMessageDialog(this,
-                "You have successfully purchased your items",
+                "You have successfully purchased your items. Thank you for your purchase, Please come visit again",
                 "Checkout Successful",
                 JOptionPane.INFORMATION_MESSAGE);
         controller.CheckoutSuccessful();
