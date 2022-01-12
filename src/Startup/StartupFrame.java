@@ -62,7 +62,7 @@ public class StartupFrame extends JFrame implements  StartupView{
         JOptionPane.showMessageDialog(this,
                 "We are redirecting you to login",
                 "Login",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
         controller.login();
     }
 }
