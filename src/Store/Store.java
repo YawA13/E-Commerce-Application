@@ -75,12 +75,10 @@ public class Store {
                 int productStock = resultSet.getInt("stock");
 
                 Product product = new Product(productId,productName,productPrice,productImg);
+
+                productStock = productStock - customer.getProductStock(product);
                 inventory.add(product, productStock);
 
-                if(customer.contains(product))
-                {
-                    inventory.remove(product,customer.getProductStock(product));
-                }
             }
         }
         catch (SQLException e)
