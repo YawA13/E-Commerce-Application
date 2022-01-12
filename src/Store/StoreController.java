@@ -34,6 +34,8 @@ public class StoreController implements ActionListener {
             case "checkout":
                 model.customerCheckout();
                 break;
+            case "sort":
+                sortProducts();
             default:
                 break;
         }
@@ -57,5 +59,29 @@ public class StoreController implements ActionListener {
         view.dispose();
         System.exit(0);
         // TODO: 2022-01-09 go back to main screen or end program or send to order page
+    }
+
+    private void sortProducts()
+    {
+        switch (view.getSortSelectedItem())
+        {
+            case "Best Match":
+                model.setInventory("select * from products order by productId");
+                break;
+            case "Price Low To High":
+                model.setInventory("select * from products order by price");
+                break;
+            case "Price High To Low":
+                model.setInventory("select * from products order by price desc");
+                break;
+            case "A-Z":
+                model.setInventory("select * from products order by name");
+                break;
+            case "Z-A":
+                model.setInventory("select * from products order by name desc");
+                break;
+            default:
+                break;
+        }
     }
 }
