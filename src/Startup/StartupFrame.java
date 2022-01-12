@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class StartupFrame extends JFrame implements  StartupView{
 
+    private StartupController controller;
 
     public StartupFrame()
     {
@@ -15,7 +16,7 @@ public class StartupFrame extends JFrame implements  StartupView{
 
         //create model and controller;
         Startup model = new Startup();
-        StartupController controller = new StartupController(model,this);
+        controller = new StartupController(model,this);
         model.addView(this);
 
         JPanel mainPanel = new JPanel();
