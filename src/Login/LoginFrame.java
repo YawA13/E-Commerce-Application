@@ -12,21 +12,25 @@ public class LoginFrame extends JFrame implements LoginView{
     public LoginFrame()
     {
         super("Login");
-        this.setLayout(new GridBagLayout());
 
         //create model and controller;
         Login model = new Login();
         model.addView(this);
         controller = new LoginController(model,this);
 
+        JPanel colorPanel = new JPanel(new GridBagLayout());
+        colorPanel.setBackground(new Color(0,103,103));
+
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
         mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 
         JLabel usernameLabel = new JLabel("Username");
+        usernameLabel.setForeground(Color.WHITE);
         usernameTextBox = new JTextField();
 
         JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setForeground(Color.WHITE);
         passwordTextBox = new JTextField();
 
         JButton loginBtn = new JButton("Login");
@@ -42,7 +46,9 @@ public class LoginFrame extends JFrame implements LoginView{
         mainPanel.add(passwordTextBox);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         mainPanel.add(loginBtn);
-        this.add(mainPanel);
+
+        colorPanel.add(mainPanel);
+        this.add(colorPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,300);

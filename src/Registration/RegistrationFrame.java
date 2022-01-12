@@ -12,12 +12,14 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
     public RegistrationFrame()
     {
         super("Registration");
-        this.setLayout(new GridBagLayout());
 
         //create model and controller;
         Registration model = new Registration();
         model.addView(this);
         controller = new RegistrationController(model,this);
+
+        JPanel colorPanel = new JPanel(new GridBagLayout());
+        colorPanel.setBackground(new Color(0,103,103));
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
@@ -25,15 +27,19 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
 
         //create label and field for textbox
         JLabel firstNameLabel = new JLabel("First Name");
+        firstNameLabel.setForeground(Color.WHITE);
         firstNameTextBox = new JTextField();
 
         JLabel lastNameLabel = new JLabel("Last Name");
+        lastNameLabel.setForeground(Color.WHITE);
         lastNameTextBox = new JTextField();
 
         JLabel usernameLabel = new JLabel("Username");
+        usernameLabel.setForeground(Color.WHITE);
         usernameTextBox = new JTextField();
 
         JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setForeground(Color.WHITE);
         passwordTextBox = new JTextField();
 
         JButton registrationBtn = new JButton("Registration");
@@ -61,7 +67,8 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         mainPanel.add(registrationBtn);
-        this.add(mainPanel);
+        colorPanel.add(mainPanel);
+        this.add(colorPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,300);

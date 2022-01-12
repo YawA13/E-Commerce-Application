@@ -40,8 +40,12 @@ public class ProductView extends JPanel {
         priceText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
+        titleText.setForeground(Color.WHITE);
         priceText.setFont(new Font("Serif", Font.PLAIN, 18));
+        priceText.setForeground(Color.WHITE);
 
+        buttonPanel.setBackground(new Color(0,0,0,0));
+        this.setBackground(new Color(0,153,153));
 
         this.add(image);
         this.add(titleText);

@@ -12,12 +12,14 @@ public class StartupFrame extends JFrame implements  StartupView{
     public StartupFrame()
     {
         super("Welcome");
-        this.setLayout(new GridBagLayout());
 
         //create model and controller;
         Startup model = new Startup();
         controller = new StartupController(model,this);
         model.addView(this);
+
+        JPanel colorPanel = new JPanel(new GridBagLayout());
+        colorPanel.setBackground(new Color(0,103,103));
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
@@ -26,17 +28,21 @@ public class StartupFrame extends JFrame implements  StartupView{
         JButton registerBtn = new JButton("Register");
         registerBtn.setActionCommand("register");
         registerBtn.addActionListener(controller);
+        registerBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton loginBtn = new JButton("Login");
         loginBtn.setActionCommand("login");
         loginBtn.addActionListener(controller);
+        loginBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //adds all components to frame
         mainPanel.add(registerBtn);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         mainPanel.add(loginBtn);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        this.add(mainPanel);
+
+        colorPanel.add(mainPanel);
+        this.add(colorPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,300);

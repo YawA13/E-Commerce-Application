@@ -27,6 +27,7 @@ public class StoreFrame extends JFrame implements StoreView {
         //JPanel topPanel = new JPanel(new GridLayout(2,1));
         JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
+        titleText.setForeground(Color.WHITE);
 
         String [] sortTitles = {"Best Match","Price Low To High","Price High To Low","A-Z","Z-A"};
         sortBtn = new JComboBox<>(sortTitles);
@@ -35,6 +36,8 @@ public class StoreFrame extends JFrame implements StoreView {
 
         JLabel sortTitle = new JLabel("Sort",SwingConstants.RIGHT);
         sortTitle.setBorder(BorderFactory.createLineBorder(new Color(0,0,0,0), 10));
+        sortTitle.setForeground(Color.WHITE);
+        sortTitle.setFont(new Font("Serif", Font.PLAIN, 16));
 
         topPanel.add(titleText,BorderLayout.PAGE_START);
         topPanel.add(sortTitle,BorderLayout.CENTER);
@@ -54,6 +57,11 @@ public class StoreFrame extends JFrame implements StoreView {
 
         productPanel = new JPanel(new WrapLayout());
         JScrollPane scrollPane = new JScrollPane(mainPanel);
+
+        mainPanel.setBackground(new Color(0,103,103));
+        topPanel.setBackground(new Color(0,0,0,0));
+        bottomBtnPanel.setBackground(new Color(0,0,0,0));
+        productPanel.setBackground(new Color(0,0,0,0));
 
         mainPanel.add(topPanel,BorderLayout.PAGE_START);
         mainPanel.add(bottomBtnPanel, BorderLayout.PAGE_END);
