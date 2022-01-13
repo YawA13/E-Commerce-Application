@@ -33,7 +33,8 @@ public class RegistrationController implements ActionListener {
     }
 
     /**
-     * Determine what action in the view occurs and call the appropriate method
+     * Sets the first name, last name, username, password of model from the respective text fields in the view. calls
+     * create account on model.
      *
      * @param e         ActionEvent, the action event
      */
