@@ -9,8 +9,14 @@ import java.awt.*;
  */
 public class StartupFrame extends JFrame implements  StartupView{
 
+    /**
+     * Controller of Startup
+     */
     private StartupController controller;
 
+    /**
+     * Default constructor
+     */
     public StartupFrame()
     {
         super("Welcome");
