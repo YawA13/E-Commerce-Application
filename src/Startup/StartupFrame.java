@@ -1,10 +1,12 @@
 package Startup;
 
-import Login.Login;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Concrete view of Startup
+ */
 public class StartupFrame extends JFrame implements  StartupView{
 
     private StartupController controller;
@@ -51,6 +53,9 @@ public class StartupFrame extends JFrame implements  StartupView{
 
     }
 
+    /**
+     * Open dialog box with registration message
+     */
     @Override
     public void register()
     {
@@ -62,6 +67,9 @@ public class StartupFrame extends JFrame implements  StartupView{
         controller.register();
     }
 
+    /**
+     * Open dialog with login message
+     */
     @Override
     public void login()
     {
@@ -72,6 +80,10 @@ public class StartupFrame extends JFrame implements  StartupView{
         controller.login();
     }
 
+    /**
+     * Main method to start the application
+     * @param args          String[], list of arguments
+     */
     public static void main(String[] args) {
         new StartupFrame();
     }
