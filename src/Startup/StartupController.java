@@ -33,7 +33,7 @@ public class StartupController implements ActionListener {
     }
 
     /**
-     * Determine what action occurs and call the appraise method
+     * Determine what action occurs and call the appropriate method
      *
      * @param e     ActionEvent, the action event
      */
