@@ -3,12 +3,24 @@ package Registration;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Concrete view of Registration
+ */
 public class RegistrationFrame extends JFrame implements RegistrationView {
 
+    /**
+     * Text field to enter first name, last name, username and passowrd
+     */
     private JTextField firstNameTextBox, lastNameTextBox, usernameTextBox,passwordTextBox;
 
+    /**
+     * Controller of view
+     */
     private RegistrationController controller;
 
+    /**
+     * Default constructor
+     */
     public RegistrationFrame()
     {
         super("Registration");
@@ -76,23 +88,46 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
         this.setVisible(true);
     }
 
-
+    /**
+     * Gets the input from first name text field
+     *
+     * @return          String, first name inputted
+     */
     public String getFirstName() {
         return firstNameTextBox.getText();
     }
 
+
+    /**
+     * Gets the input from last name text field
+     *
+     * @return          String, last name inputted
+     */
     public String getLastName() {
         return lastNameTextBox.getText();
     }
 
+    /**
+     * Gets the input from username text field
+     *
+     * @return          String, username inputted
+     */
     public String getUsername() {
         return usernameTextBox.getText();
     }
 
+    /**
+     * Gets the input from password text field
+     *
+     * @return          String, password inputted
+     */
     public String getPassword() {
         return passwordTextBox.getText();
     }
 
+    /**
+     * Open dialog box with successful registration message
+     */
     @Override
     public void registrationSuccessful() {
         JOptionPane.showMessageDialog(this,
@@ -103,6 +138,9 @@ public class RegistrationFrame extends JFrame implements RegistrationView {
         controller.registrationSuccessful();
     }
 
+    /**
+     * Open dialog box with failed registration message
+     */
     @Override
     public void registrationFailed() {
         JOptionPane.showMessageDialog(this,
