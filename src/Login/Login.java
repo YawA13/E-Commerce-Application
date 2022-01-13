@@ -9,13 +9,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model of Login
+ */
 public class Login {
 
+    /**
+     * Customer username
+     */
     private String username;
+
+    /**
+     * Customer passowrd
+     */
     private String password;
+
+    /**
+     * Customer Id
+     */
     private int customerId;
+
+    /**
+     * List of views associated with Login
+     */
     private List<LoginView> views;
 
+    /**
+     * Default constructor
+     */
     public Login() {
         username = null;
         password = null;
@@ -23,21 +44,41 @@ public class Login {
         views = new ArrayList<>();
     }
 
+    /**
+     * Set username of Customer
+     *
+     * @param username          String, Customer username
+     */
     public void setUsername(String username)
     {
         this.username = username;
     }
 
+    /**
+     * Set password of Customer
+     *
+     * @param password          String, Customer password
+     */
     public void setPassword(String password)
     {
         this.password = password;
     }
 
+    /**
+     * Add new view to existing list of views
+     *
+     * @param newView           LoginView, the new view to be added
+     */
     public void addView(LoginView newView)
     {
         views.add(newView);
     }
 
+    /**
+     * Removes an existing view from list of views
+     *
+     * @param oldView           LoginView, the view to be removed
+     */
     public void removeView(LoginView oldView)
     {
         for (int i = 0; i < views.size(); i++)
@@ -49,6 +90,10 @@ public class Login {
             }
         }
     }
+
+    /**
+     * Checks if there is a customer account paired with the username and password
+     */
     public void requestLogin()
     {
         Connection connection = DatabaseConnection.getConnection();
@@ -78,6 +123,11 @@ public class Login {
 
     }
 
+    /**
+     * Sets the Customer Id to the Customer Id from the database. calls loginSuccessful method for all views in the list
+     *
+     * @param resultSet         ResultSet, the data associated from the matching username password pair
+     */
     private void loginSuccessful(ResultSet resultSet)
     {
         try
@@ -96,6 +146,9 @@ public class Login {
         }
     }
 
+    /**
+     * calls loginFailed method for all views in the list
+     */
     private void loginFailed()
     {
         DatabaseConnection.closeConnection();
@@ -105,6 +158,11 @@ public class Login {
         }
     }
 
+    /**
+     * Gets the Customer id
+     *
+     * @return              int, the Customer id
+     */
     public int getCustomerId()
     {
         return customerId;

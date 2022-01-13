@@ -3,12 +3,24 @@ package Login;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Concrete view of Login
+ */
 public class LoginFrame extends JFrame implements LoginView{
 
+    /**
+     * Text field for username and password
+     */
     private JTextField  usernameTextBox, passwordTextBox;
 
+    /**
+     * Controller of model and view
+     */
     private LoginController controller;
 
+    /**
+     * Default constructor
+     */
     public LoginFrame()
     {
         super("Login");
@@ -56,16 +68,29 @@ public class LoginFrame extends JFrame implements LoginView{
         this.setVisible(true);
     }
 
+    /**
+     * Gets the text from username text field
+     *
+     * @return          String, the username inputted by the customer
+     */
     public String getUsername()
     {
         return usernameTextBox.getText();
     }
 
+    /**
+     * Gets the text from password text field
+     *
+     * @return          String, the password inputted by the customer
+     */
     public String getPassword()
     {
         return passwordTextBox.getText();
     }
 
+    /**
+     * Open dialog box with successful login message and calls loginSuccessful method in the controller
+     */
     @Override
     public void loginSuccessful()
     {
@@ -77,6 +102,9 @@ public class LoginFrame extends JFrame implements LoginView{
         controller.loginSuccessful();
     }
 
+    /**
+     * Open dialog box with failed login message
+     */
     @Override
     public void loginFailed()
     {
