@@ -37,85 +37,79 @@ public class StoreFrame extends JFrame implements StoreView {
     public StoreFrame(StoreController controller)
     {
         super("Welcome");
+
         this.controller = controller;
         this.productViews = new HashMap<>();
 
+        //Panel split into topPanel(page start), productPanel(center), and bottomPanel(page end)
         JPanel mainPanel = new JPanel(new BorderLayout());
 
+        //create top panel for title and the sort dropdown menu
         JPanel topPanel = new JPanel(new BorderLayout());
-        //JPanel topPanel = new JPanel(new GridLayout(2,1));
+
+        //create title and set font and font color
         JLabel titleText = new JLabel("Baseball Exclusives Store", SwingConstants.CENTER);
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
         titleText.setForeground(Color.WHITE);
 
+        //create sort dropdown menu for sort with the following sort options
         String [] sortTitles = {"Best Match","Price Low To High","Price High To Low","A-Z","Z-A"};
         sortBtn = new JComboBox<>(sortTitles);
         sortBtn.addActionListener(controller);
         sortBtn.setActionCommand("sort");
 
+        //label that display sort for user to see what the dropdown menu is for
         JLabel sortTitle = new JLabel("Sort",SwingConstants.RIGHT);
         sortTitle.setBorder(BorderFactory.createLineBorder(new Color(0,0,0,0), 10));
         sortTitle.setForeground(Color.WHITE);
         sortTitle.setFont(new Font("Serif", Font.PLAIN, 16));
 
+        //adds  title, sort title, and sort menu to the top panel
         topPanel.add(titleText,BorderLayout.PAGE_START);
         topPanel.add(sortTitle,BorderLayout.CENTER);
         topPanel.add(sortBtn,BorderLayout.LINE_END);
 
+        //create bottom panel that will contain view cart and checkout button in 1 row
         JPanel bottomBtnPanel = new JPanel(new GridLayout(1,2));
+
+        //create view cart button
         JButton viewCartBtn = new JButton("View Cart");
         viewCartBtn.setActionCommand("view cart");
         viewCartBtn.addActionListener(controller);
 
+        //create checkout button
         JButton checkoutBtn = new JButton("Checkout");
         checkoutBtn.setActionCommand("checkout");
         checkoutBtn.addActionListener(controller);
 
+        //add view cart and checkout button
         bottomBtnPanel.add(viewCartBtn);
         bottomBtnPanel.add(checkoutBtn);
 
+        //panel for all the products to be displayed in. Will be in the center of main panel
         productPanel = new JPanel(new WrapLayout());
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
 
+
+
+        //Sets the color of main panel and make the top, center and bottom to be transparent
         mainPanel.setBackground(new Color(0,103,103));
         topPanel.setBackground(new Color(0,0,0,0));
         bottomBtnPanel.setBackground(new Color(0,0,0,0));
         productPanel.setBackground(new Color(0,0,0,0));
 
+        //adds top panel, bottom panel and product panel to main panel
         mainPanel.add(topPanel,BorderLayout.PAGE_START);
         mainPanel.add(bottomBtnPanel, BorderLayout.PAGE_END);
         mainPanel.add(productPanel, BorderLayout.CENTER);
 
-        /***
-        todo use for dual panel
-        mainPanel = new JPanel(new GridBagLayout());
-        JPanel productPanel = new JPanel();
-        JPanel cartPanel = new JPanel();
-        productPanel.setBackground(Color.RED);
-        cartPanel.setBackground(Color.GREEN);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 3;
-        gbc.gridheight = 1;
-        gbc.weightx = 0.75;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        mainPanel.add(productPanel,gbc);
-
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
-        gbc.weightx = 0.25;
-        mainPanel.add(cartPanel,gbc);
-        **/
-
+        //Outer panel directly added to the frame. Holds the main panel
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
         this.add(scrollPane);
+
+        //set common properties for the frame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(900,400);
-        this.setPreferredSize(new Dimension(600,400));
+        this.setPreferredSize(new Dimension(900,400));
         this.setVisible(true);
 
     }
