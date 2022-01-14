@@ -33,10 +33,12 @@ public class ProductView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        //create label for image, title and price
         JLabel image = new JLabel(new ImageIcon(getClass().getResource(productImg)));
         JLabel titleText = new JLabel(productName);
         JLabel priceText = new JLabel("$"+productPrice);
 
+        //create panel for buttons to be displayed in one row
         JPanel buttonPanel = new JPanel();
         addBtn = new JButton("+");
         removeBtn = new JButton("-");
@@ -47,15 +49,20 @@ public class ProductView extends JPanel {
         addBtn.putClientProperty("product",product);
         removeBtn.putClientProperty("product",product);
 
+        //sets a black border to the entire ProductView
         Border blackline = BorderFactory.createLineBorder(Color.black);
         this.setBorder(blackline);
 
+        //allign the image, title and price label to the center
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleText.setAlignmentX(Component.CENTER_ALIGNMENT);
         priceText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        //set title font and font color
         titleText.setFont(new Font("Serif", Font.PLAIN, 18));
         titleText.setForeground(Color.WHITE);
+
+        //set price font and font color
         priceText.setFont(new Font("Serif", Font.PLAIN, 18));
         priceText.setForeground(Color.WHITE);
 
