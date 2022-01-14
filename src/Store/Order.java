@@ -1,19 +1,39 @@
 package Store;
 
 import General.DatabaseConnection;
-
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
+/**
+ * Create and send Order to Database
+ */
 public class Order {
 
+    /**
+     * Customer placing the Order
+     */
     private Customer customer;
+
+    /**
+     * Date of the Order
+     */
     private Date date;
+
+    /**
+     * Order Id
+     */
     private int orderId;
+
+    /**
+     * message generated from failed Order
+     */
     private String message;
 
+    /**
+     * Constructor for Order
+     *
+     * @param customer          Customer, the customer placing the Order
+     */
     public Order(Customer customer)
     {
         this.customer = customer;
@@ -22,11 +42,20 @@ public class Order {
         message = null;
     }
 
+    /**
+     * Sets the current date of the Order;
+     */
     public void setCurrentDate() {
         java.util.Date utilDate=new java.util.Date();
         date=new java.sql.Date(utilDate.getTime());
     }
 
+    /**
+     * Attempts to save the order to relevant tables within the database
+     *
+     * @return                  boolean, true if the order was saved to the database;false otherwise
+     * @throws SQLException
+     */
     public boolean saveOrderToDb() throws SQLException {
         Connection connection = DatabaseConnection.getConnection();
         Savepoint savepoint1 = null;
@@ -67,6 +96,13 @@ public class Order {
     }
 
 
+    /**
+     * Checks if there is enough stock in the product database to purchase all the items in the customer shopping cart.
+     * For any product that can't be purchased the entire product is removed from the cart and is added to the message
+     *
+     * @param connection        Connection, connection to the database
+     * @return                  boolean, true if all products in the customer shopping cart can be bought
+     */
     private boolean checkProductTable(Connection connection)
     {
         boolean isCheckSuccessful = true;
@@ -105,6 +141,11 @@ public class Order {
         return isCheckSuccessful;
     }
 
+    /**
+     * Subtracts the stock for each product in the products table with the stock in the customer shopping cart
+     *
+     * @param connection                Connection, connection to the database
+     */
     private void updateProductsTable(Connection connection)
     {
         try
@@ -128,6 +169,12 @@ public class Order {
     }
 
 
+    /**
+     * Adds a new row to the order table with the customer id and the current date. Sets the orderId with the generated
+     * orderId in the database.
+     *
+     * @param connection            Connection, connection to the database
+     */
     private void updateOrdersTable(Connection connection)
     {
         try
@@ -155,6 +202,12 @@ public class Order {
         }
     }
 
+    /**
+     * For each product in customer shopping cart adds a new row to the orderDetail table with the
+     * order id, product id and quantity.
+     *
+     * @param connection            Connection, connection to the database
+     */
     private void updateOrderDetailsTable(Connection connection)
     {
         try
@@ -180,17 +233,32 @@ public class Order {
         }
     }
 
+    /**
+     * Gets the order message
+     *
+     * @return              String, the order message
+     */
     public String getMessage()
     {
         return message;
     }
 
 
+    /**
+     * Gets the updated customer cart
+     *
+     * @return              ProductStockCollection, the Customer new shopping cart
+     */
     public ProductStockCollection getCustomerCart()
     {
         return customer.getShoppingCart();
     }
 
+    /**
+     * Sets the order message with the name of the product that failed the check
+     *
+     * @param productName
+     */
     private void setFailedCheckMessage(String productName)
     {
         if(message==null)

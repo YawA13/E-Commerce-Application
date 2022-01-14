@@ -5,10 +5,25 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * View for each Product within StoreView
+ */
 public class ProductView extends JPanel {
+    /**
+     * Add button
+     */
     private JButton addBtn;
+
+    /**
+     * Remove btn
+     */
     private JButton removeBtn;
 
+    /**
+     * Constructor for ProductView
+     *
+     * @param product           Product, The product associated with the ProductView
+     */
     public ProductView(Product product)
     {
 
@@ -56,17 +71,32 @@ public class ProductView extends JPanel {
         this.add(buttonPanel);
     }
 
+    /**
+     * Sets the controller both buttons will call when clicked
+     *
+     * @param controller            ActionListener, Controller of buttons
+     */
     public void setButtonController(ActionListener controller)
     {
         addBtn.addActionListener(controller);
         removeBtn.addActionListener(controller);
     }
 
+    /**
+     * Sets the enable value for the add button
+     *
+     * @param enable            boolean, true will allow button to be clickable;
+     */
     public void setAddBtnEnable(boolean enable)
     {
         addBtn.setEnabled(enable);
     }
 
+    /**
+     * Sets the enable value for the remove button
+     *
+     * @param enable            boolean, true will allow button to be clickable;
+     */
     public void setRemoveBtnEnable(boolean enable)
     {
         removeBtn.setEnabled(enable);

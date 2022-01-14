@@ -1,20 +1,39 @@
 package Store;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
 
+/**
+ * Concrete view of Store
+ */
 public class StoreFrame extends JFrame implements StoreView {
 
+    /**
+     * Controller the Store model and buttons will use
+     */
     private StoreController controller;
+
+    /**
+     * The outer panel that all productViews will be added to
+     */
     private JPanel productPanel;
+
+    /**
+     *  Hashmap of product keys paired to its associated productView
+     */
     private HashMap<Product,ProductView> productViews;
+
+    /**
+     * The dropdown menu to sort the products
+     */
     private JComboBox<String> sortBtn;
 
+    /**
+     * Constructor for StoreFrame
+     *
+     * @param controller                StoreController, Controller the Store model and buttons will use
+     */
     public StoreFrame(StoreController controller)
     {
         super("Welcome");
@@ -101,6 +120,12 @@ public class StoreFrame extends JFrame implements StoreView {
 
     }
 
+    /**
+     * Add ProductView of each inventory products to product panel
+     *
+     * @param inventory             ProductStockCollection, collection of products in Store inventory
+     * @param cart                  ProductStockCollection, collection of products in Customer shopping cart
+     */
     public void addProductsToGUI(ProductStockCollection inventory, ProductStockCollection cart)
     {
         productPanel.removeAll();
@@ -126,6 +151,13 @@ public class StoreFrame extends JFrame implements StoreView {
         this.validate();
     }
 
+    /**
+     * Update the store and a specific productView after the specified product is added or removed to customer shopping cart
+     *
+     * @param product               Product, the product added or removed to shopping cart
+     * @param addEnable             boolean, true if add button should be enabled; false otherwise
+     * @param removeEnable          boolean, true if remove button should be enabled; false otherwise
+     */
     public void updateCustomerCart(Product product, boolean addEnable, boolean removeEnable)
     {
         ProductView productView = productViews.get(product);
@@ -134,16 +166,33 @@ public class StoreFrame extends JFrame implements StoreView {
 
     }
 
+    /**
+     * Sets the enable value for the add button of the specified productView
+     *
+     * @param productView               ProductView, the product view that will be affected
+     * @param enable                    boolean, true will allow button to be clickable;
+     */
     private void setAddBtnEnable(ProductView productView, Boolean enable)
     {
         productView.setAddBtnEnable(enable);
     }
 
+    /**
+     * Sets the enable value for the remove button of the specified productView
+     *
+     * @param productView               ProductView, the product view that will be affected
+     * @param enable                    boolean, true will allow button to be clickable;
+     */
     private void setRemoveBtnEnable(ProductView productView, Boolean enable)
     {
         productView.setRemoveBtnEnable(enable);
     }
 
+    /**
+     * Displays the customer cart in a dialog box
+     *
+     * @param cart                  String, the Customer's cart in text-form
+     */
     @Override
     public void displayCustomerCart(String cart)
     {
@@ -153,15 +202,23 @@ public class StoreFrame extends JFrame implements StoreView {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * Display dialog box with a checkout success message and calls checkoutSuccessful method on controller
+     */
     @Override
     public void checkoutSuccessful() {
         JOptionPane.showMessageDialog(this,
                 "You have successfully purchased your items. Thank you for your purchase, Please come visit again",
                 "Checkout Successful",
                 JOptionPane.INFORMATION_MESSAGE);
-        controller.CheckoutSuccessful();
+        controller.checkoutSuccessful();
     }
 
+    /**
+     * Display a dialog box with a checkout failed message
+     *
+     * @param message               String, the error message of why the checkout failed
+     */
     @Override
     public void checkoutFailed(String message) {
 
@@ -171,6 +228,11 @@ public class StoreFrame extends JFrame implements StoreView {
                 JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Gets the sort item the user choose
+     *
+     * @return                  String, the sort option
+     */
     public String getSortSelectedItem()
     {
         return (String) sortBtn.getSelectedItem();
