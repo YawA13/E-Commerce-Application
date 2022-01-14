@@ -30,17 +30,21 @@ public class LoginFrame extends JFrame implements LoginView{
         model.addView(this);
         controller = new LoginController(model,this);
 
+        //Outer panel directly connected to the frame to display colour
         JPanel colorPanel = new JPanel(new GridBagLayout());
         colorPanel.setBackground(new Color(0,103,103));
 
+        //main panel for all text field and buttons to be added
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(new Color(0,0,0,0));
         mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 
+        //create label and text field for username
         JLabel usernameLabel = new JLabel("Username");
         usernameLabel.setForeground(Color.WHITE);
         usernameTextBox = new JTextField();
 
+        //create label and text field for password
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setForeground(Color.WHITE);
         passwordTextBox = new JTextField();
@@ -48,11 +52,13 @@ public class LoginFrame extends JFrame implements LoginView{
         JButton loginBtn = new JButton("Login");
         loginBtn.addActionListener(controller);
 
-        //adds all components to frame
+        //adds label, then empty space, then text field, then another empty space component for username to main panel
         mainPanel.add(usernameLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         mainPanel.add(usernameTextBox);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        //adds label, then empty space, then text field, then another empty space component for password to main panel
         mainPanel.add(passwordLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         mainPanel.add(passwordTextBox);
@@ -62,6 +68,7 @@ public class LoginFrame extends JFrame implements LoginView{
         colorPanel.add(mainPanel);
         this.add(colorPanel);
 
+        //set common properties for the frame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,300);
         this.setPreferredSize(new Dimension(600,300));
