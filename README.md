@@ -5,13 +5,21 @@ A simple E-commerce application that allows for users to buy products from an on
 
 ## Features
 - Sign up
+- Save Customer information on MYSQL database
+![](https://github.com/YawA13/E-Commerce-Application/blob/master/Readme%20Assets/regVid.gif)
 - Sign in
+![](https://github.com/YawA13/E-Commerce-Application/blob/master/Readme%20Assets/loginVid.gif)
 - Purchase Multiple Products
+![](https://github.com/YawA13/E-Commerce-Application/blob/master/Readme%20Assets/cartVid.gif)
+- Save Products on MySQL database
+- Save Orders on MySQL database
+- ![](https://github.com/YawA13/E-Commerce-Application/blob/master/Readme%20Assets/orderVid.gif)
 - Multiple users can purchase at the same time
 - Sort products by Best Match, Price Low To High, Price High To Low,  A-Z, Z-A 
-- Store Customer information on MYSQL database
-- Store Products on MySQL database
-- Store Orders on MySQL database
+![](https://github.com/YawA13/E-Commerce-Application/blob/master/Readme%20Assets/sortVid.gif)
+
+
+
 
 ## Installation
 -  Create a new schema in MySQL database
