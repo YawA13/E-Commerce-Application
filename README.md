@@ -15,18 +15,18 @@ A simple E-commerce application that allows for users to buy products from an on
 
 ## Installation
 -  Create a new schema in MySQL database
--  Download customers.csv, oderdetails.csv, orders.csv, products.csv from Database Tables ()
+-  Download customers.csv, oderdetails.csv, orders.csv, products.csv from [Database Tables](https://github.com/YawA13/E-Commerce-Application/tree/master/Database%20Tables)
 -  Import customers.csv, oderdetails.csv, orders.csv, products.csv using Table data import wizard
 -  Clone this repository
     
-        git clone https://github.com/YAA13/ouinfo
+        git clone https://github.com/YawA13/E-Commerce-Application.git
 
 -  Import into IDE
 -  Open db.config
 -  Set MySQL url after “db.url=”
 -  Enter MySQL username after “db.username=”
 -  Set MySQL password after “db.password=”
-- . Click run
+-  Click run
 
 
 ## Features
